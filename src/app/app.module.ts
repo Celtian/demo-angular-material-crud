@@ -4,6 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxAppVersionModule } from 'ngx-app-version';
+import { VERSION } from 'src/environments/version';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -17,7 +19,10 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxAppVersionModule.forRoot({
+      version: VERSION.version,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
