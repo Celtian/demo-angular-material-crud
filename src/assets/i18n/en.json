@@ -1,0 +1,6 @@
+{
+  "ERROR": {
+    "post-was-not-found": "Post was not found",
+    "unexpected-exception": "Neočekáváná chyba"
+  }
+}

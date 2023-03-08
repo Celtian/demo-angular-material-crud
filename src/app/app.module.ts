@@ -9,6 +9,7 @@ import { NgxFixedFooterModule } from 'ngx-fixed-footer';
 import { VERSION } from 'src/environments/version';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { I18nModule } from './i18n';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,10 @@ import { AppComponent } from './app.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    I18nModule.forRoot({
+      version: VERSION.version,
+      defaultLanguage: 'en',
+    }),
     NgxFixedFooterModule.forRoot({
       containerSelector: '.permanent-main',
       cssAttribute: 'margin',

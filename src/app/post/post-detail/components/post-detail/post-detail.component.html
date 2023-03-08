@@ -1,0 +1,44 @@
+<ng-container [ngSwitch]="dataSource.state">
+  <ng-container *ngSwitchCase="'loading'">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle class="blur-sm">{{ '#' + dataSource.data.id }}</mat-card-subtitle>
+        <mat-card-title class="blur-sm">{{ dataSource.data.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="blur-sm">
+          {{ dataSource.data.body }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="'data'">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>{{ '#' + dataSource.data.id }}</mat-card-subtitle>
+        <mat-card-title>{{ dataSource.data.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ dataSource.data.body }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="'error'">
+    <mat-card>
+      <mat-card-content class="text-center flex flex-col gap-2">
+        <mat-icon aria-hidden="false" aria-label="Error icon" fontIcon="error"></mat-icon>
+        <div>{{ dataSource.error }}</div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="'empty'">
+    <mat-card>
+      <mat-card-content class="text-center flex flex-col gap-2">
+        <mat-icon aria-hidden="false" aria-label="Error icon" fontIcon="warning"></mat-icon>
+        <div>{{ 'ERROR.post-was-not-found' | translate }}</div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</ng-container>
