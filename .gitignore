@@ -43,5 +43,6 @@ testem.log
 Thumbs.db
 
 # Temporary files
+version.ts
 *.log
 .firebase
