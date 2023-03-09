@@ -1,1 +1,39 @@
-<p>post-list works!</p>
+<table
+  mat-table
+  [dataSource]="data"
+  matSort
+  matSortActive="id"
+  matSortDirection="asc"
+  matSortDisableClear
+  (matSortChange)="onSortChange($event)"
+>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>ID</th>
+    <td mat-cell *matCellDef="let row">{{ '#' + row.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>User</th>
+    <td mat-cell *matCellDef="let row">{{ '#' + row.userId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Title</th>
+    <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="body">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Body</th>
+    <td mat-cell *matCellDef="let row">{{ row.body }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  [length]="totalCount"
+  (page)="onPageChange($event)"
+  aria-label="Select page of posts"
+></mat-paginator>
