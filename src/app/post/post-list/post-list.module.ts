@@ -1,3 +1,4 @@
+import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +30,7 @@ import { PostListRoutingModule } from './post-list-routing.module';
     MatDialogModule,
     MatTooltipModule,
     FormsModule,
+    PortalModule,
   ],
 })
 export class PostListModule {}

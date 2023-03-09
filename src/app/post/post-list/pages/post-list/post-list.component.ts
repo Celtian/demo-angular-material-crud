@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { CdkPortal } from '@angular/cdk/portal';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, filter, first, map, switchMap } from 'rxjs';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
 import { DeletePostDialogComponent } from '../../components/delete-post-dialog/delete-post-dialog.component';
 
 @UntilDestroy()
@@ -15,10 +17,13 @@ import { DeletePostDialogComponent } from '../../components/delete-post-dialog/d
   styleUrls: ['./post-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent implements OnInit, OnDestroy {
+  @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
+
+  public readonly displayedColumns: string[] = ['id', 'title', 'actions'];
+  public readonly pageSizeOptions = [5, 10, 25, 100];
   public data: PostDto[] = [];
   public totalCount = 0;
-  public displayedColumns: string[] = ['id', 'title', 'actions'];
   public query = '';
 
   constructor(
@@ -27,10 +32,17 @@ export class PostListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private breadcrumbsPortalService: BreadcrumbsPortalService
   ) {}
 
+  public ngOnDestroy(): void {
+    this.portalContent?.detach();
+  }
+
   public ngOnInit(): void {
+    this.breadcrumbsPortalService.setPortal(this.portalContent);
+
     this.route.queryParamMap
       .pipe(
         first(),

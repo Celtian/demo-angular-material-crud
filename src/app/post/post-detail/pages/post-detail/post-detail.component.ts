@@ -1,5 +1,6 @@
+import { CdkPortal } from '@angular/cdk/portal';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +8,7 @@ import { delay, filter, map, switchMap } from 'rxjs';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
 
 const DEFAULT_VALUE: PostDto = {
   body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente harum debitis eius et eaque beatae qui delectus ullam esse, quis distinctio fugit quod. Doloremque consequatur commodi id, corporis iure cum?',
@@ -22,17 +24,26 @@ const DEFAULT_VALUE: PostDto = {
   styleUrls: ['./post-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
+  @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
+
   public dataSource = new DataSource<PostDto>(DEFAULT_VALUE);
 
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private breadcrumbsPortalService: BreadcrumbsPortalService
   ) {}
 
+  public ngOnDestroy(): void {
+    this.portalContent?.detach();
+  }
+
   public ngOnInit(): void {
+    this.breadcrumbsPortalService.setPortal(this.portalContent);
+
     this.route.paramMap
       .pipe(
         delay(500),

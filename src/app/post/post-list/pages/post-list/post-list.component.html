@@ -57,8 +57,12 @@
 </table>
 
 <mat-paginator
-  [pageSizeOptions]="[5, 10, 25, 100]"
+  [pageSizeOptions]="pageSizeOptions"
   [length]="totalCount"
   (page)="onPageChange($event)"
   aria-label="Select page of posts"
 ></mat-paginator>
+
+<div *cdkPortal class="container py-4">
+  <a mat-button color="primary" [routerLink]="['/' | localize]">Posts</a>
+</div>

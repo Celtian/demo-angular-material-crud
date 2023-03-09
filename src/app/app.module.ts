@@ -1,3 +1,4 @@
+import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +23,7 @@ import { I18nModule } from './i18n';
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
+    PortalModule,
     I18nModule.forRoot({
       version: VERSION.version,
       defaultLanguage: 'en',

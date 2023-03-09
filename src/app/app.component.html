@@ -7,6 +7,9 @@
 </header>
 
 <main class="flex-1 permanent-main">
+  <ng-container *ngIf="breadcrumbsPortal$ | async as portal">
+    <ng-template [cdkPortalOutlet]="portal"></ng-template>
+  </ng-container>
   <router-outlet></router-outlet>
 </main>
 
