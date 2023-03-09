@@ -19,7 +19,11 @@ export class ApiService {
     order: 'asc' | 'desc' = 'asc',
     query = ''
   ): Observable<Pagination<PostDto>> {
-    const params = [`_page=${page}`, `_limit=${limit}`, `_sort=${sort}`, `_order=${order}`];
+    const params = [`_limit=${limit}`, `_sort=${sort}`, `_order=${order}`];
+
+    if (page > 0) {
+      params.push(`_page=${page}`);
+    }
 
     if (query) {
       params.push(`title_like=${query}`);
@@ -41,7 +45,11 @@ export class ApiService {
       );
   }
 
-  public detail(id: string): Observable<PostDto> {
+  public detail(id: number): Observable<PostDto> {
     return this.http.get<PostDto>(`${this.apiUrl}/posts/${id}`);
+  }
+
+  public delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/posts/${id}`);
   }
 }

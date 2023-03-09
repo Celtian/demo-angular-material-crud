@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
-import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 
 const routes: Routes = [
   {

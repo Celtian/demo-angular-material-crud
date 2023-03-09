@@ -1,13 +1,14 @@
 <mat-form-field class="w-full">
   <mat-label>Filter</mat-label>
   <input matInput (input)="onQueryChange($event)" placeholder="Type something here" [(ngModel)]="query" />
-  <button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onQueryRemove()">
+  <button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onQueryRemove()" matTooltip="Clear">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
 
 <table
   mat-table
+  [fixedLayout]="true"
   [dataSource]="data"
   matSort
   matSortActive="id"
@@ -18,9 +19,7 @@
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>ID</th>
     <td mat-cell *matCellDef="let row">
-      <a [routerLink]="['/' | localize, row.id]" mat-button>
-        {{ '#' + row.id }}
-      </a>
+      {{ '#' + row.id }}
     </td>
   </ng-container>
 
@@ -31,12 +30,26 @@
 
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Title</th>
-    <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+    <td mat-cell *matCellDef="let row" class="font-bold">{{ row.title }}</td>
   </ng-container>
 
   <ng-container matColumnDef="body">
     <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Body</th>
     <td mat-cell *matCellDef="let row">{{ row.body }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let row">
+      <div class="flex gap-2">
+        <a mat-icon-button [routerLink]="['/' | localize, row.id]" matTooltip="Post Detail">
+          <mat-icon>info</mat-icon>
+        </a>
+        <button mat-icon-button (click)="onDelete(row)" matTooltip="Delete post">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { PostDetailRoutingModule } from './post-detail-routing.module';
 
 @NgModule({

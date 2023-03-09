@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { debounceTime, first, map, switchMap } from 'rxjs';
+import { debounceTime, filter, first, map, switchMap } from 'rxjs';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { DeletePostDialogComponent } from '../../components/delete-post-dialog/delete-post-dialog.component';
 
 @UntilDestroy()
 @Component({
@@ -15,14 +18,16 @@ import { ApiService } from 'src/app/shared/services/api.service';
 export class PostListComponent implements OnInit {
   public data: PostDto[] = [];
   public totalCount = 0;
-  public displayedColumns: string[] = ['id', 'userId', 'title', 'body'];
+  public displayedColumns: string[] = ['id', 'title', 'actions'];
   public query = '';
 
   constructor(
     private apiService: ApiService,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   public ngOnInit(): void {
@@ -73,7 +78,7 @@ export class PostListComponent implements OnInit {
   public onPageChange(event: any): void {
     this.router.navigate([], {
       queryParams: {
-        pageIndex: event.pageIndex,
+        pageIndex: event.pageIndex > 0 ? event.pageIndex : null,
         pageSize: event.pageSize,
       },
       queryParamsHandling: 'merge',
@@ -103,5 +108,28 @@ export class PostListComponent implements OnInit {
       queryParamsHandling: 'merge',
       replaceUrl: true,
     });
+  }
+
+  public onDelete(row: PostDto): void {
+    const dialogRef = this.dialog.open(DeletePostDialogComponent, {
+      width: 'sm',
+    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        first(),
+        filter((res) => !!res),
+        switchMap(() => this.apiService.delete(row.id))
+      )
+      .subscribe({
+        next: () => {
+          this.data = this.data.filter((i) => i.id !== row.id);
+          this.cdr.markForCheck();
+          this.snackBar.open('Succesfully deleted', 'Close');
+        },
+        error: () => {
+          this.snackBar.open('Deletion failed', 'Close');
+        },
+      });
   }
 }

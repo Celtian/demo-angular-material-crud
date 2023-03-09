@@ -37,8 +37,8 @@ export class PostDetailComponent implements OnInit {
       .pipe(
         delay(500),
         map((paramMap) => paramMap.get('id')),
-        filter((id) => typeof id === 'string'),
-        switchMap((id) => this.apiService.detail(String(id))),
+        filter((id) => !Number.isNaN(Number(id))),
+        switchMap((id) => this.apiService.detail(Number(id))),
         untilDestroyed(this)
       )
       .subscribe({
