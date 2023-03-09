@@ -1,5 +1,5 @@
 interface APP<T> {
-  HOMEPAGE: T;
+  POSTS: T;
   NOT_FOUND: T;
 }
 

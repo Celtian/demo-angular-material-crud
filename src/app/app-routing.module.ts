@@ -5,12 +5,12 @@ import { ROUTES } from './shared/constants/route.constant';
 export const routes: Routes = [
   {
     path: '',
-    title: ROUTES.APP.HOMEPAGE,
+    title: ROUTES.APP.POSTS,
     loadChildren: () => import('./post/post-list/post-list.module').then((m) => m.PostListModule),
   },
   {
     path: ':id',
-    title: ROUTES.APP.HOMEPAGE,
+    title: ROUTES.APP.POSTS,
     loadChildren: () => import('./post/post-detail/post-detail.module').then((m) => m.PostDetailModule),
   },
   {
