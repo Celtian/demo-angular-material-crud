@@ -22,6 +22,8 @@
 
 <footer ngxFixedFooter class="fixed bottom-0 w-full text-center">
   <mat-toolbar color="primary">
-    <div class="container text-sm">Všechna práva vyhrazena © {{ endYear }}</div>
+    <div class="container text-sm">
+      {{ 'footer.content' | translate : { endYear } }}
+    </div>
   </mat-toolbar>
 </footer>

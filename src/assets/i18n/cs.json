@@ -2,5 +2,8 @@
   "ERROR": {
     "post-was-not-found": "███",
     "unexpected-exception": "███"
+  },
+  "footer": {
+    "content": "███"
   }
 }

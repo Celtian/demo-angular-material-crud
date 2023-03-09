@@ -16,10 +16,19 @@ export class ApiService {
     page = 1,
     limit = 5,
     sort: keyof PostDto = 'id',
-    order: 'asc' | 'desc' = 'asc'
+    order: 'asc' | 'desc' = 'asc',
+    query = ''
   ): Observable<Pagination<PostDto>> {
+    const params = [`_page=${page}`, `_limit=${limit}`, `_sort=${sort}`, `_order=${order}`];
+
+    if (query) {
+      params.push(`title_like=${query}`);
+      // params.push(`body_like=${query}`);
+      // params.push(`_q=${query}`);
+    }
+
     return this.http
-      .get<PostDto[]>(`${this.apiUrl}/posts?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`, {
+      .get<PostDto[]>(`${this.apiUrl}/posts?${params.join('&')}`, {
         observe: 'response',
       })
       .pipe(

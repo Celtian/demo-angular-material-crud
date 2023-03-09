@@ -1,3 +1,11 @@
+<mat-form-field class="w-full">
+  <mat-label>Filter</mat-label>
+  <input matInput (input)="onQueryChange($event)" placeholder="Type something here" [(ngModel)]="query" />
+  <button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onQueryRemove()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
 <table
   mat-table
   [dataSource]="data"
