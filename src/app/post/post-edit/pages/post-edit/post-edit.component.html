@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle [class.blur-sm]="dataSource.state !== 'data'">{{ '#' + dataSource.data.id }}</mat-card-subtitle>
+    <mat-card-title [class.blur-sm]="dataSource.state !== 'data'">{{ dataSource.data.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="flex flex-col gap-2 mt-2 text-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="w-full">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title" />
+        <button
+          *ngIf="form.controls.title.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="form.controls.title.setValue('')"
+          matTooltip="Clear"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Body</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="body"></textarea>
+        <button
+          *ngIf="form.controls.body.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="form.controls.body.setValue('')"
+          matTooltip="Clear"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button color="primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<div *cdkPortal class="container flex items-center gap-1 py-4">
+  <a mat-button color="primary" [routerLink]="['/' | localize]">Posts</a>
+  <ng-container *ngIf="dataSource.state === 'data'">
+    <mat-icon aria-hidden="false" aria-label="Arrow icon" fontIcon="chevron_right"></mat-icon>
+    <a mat-button color="primary" [routerLink]="['/' | localize, dataSource.data.id]">{{ dataSource.data.id }}</a>
+    <mat-icon aria-hidden="false" aria-label="Arrow icon" fontIcon="chevron_right"></mat-icon>
+    <a mat-button color="primary" [routerLink]="['/' + dataSource.data.id + '/edit' | localize]">edit</a>
+  </ng-container>
+</div>

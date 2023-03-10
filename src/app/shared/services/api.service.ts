@@ -52,4 +52,8 @@ export class ApiService {
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/posts/${id}`);
   }
+
+  public patch(id: number, body: Partial<PostDto>): Observable<PostDto> {
+    return this.http.patch<PostDto>(`${this.apiUrl}/posts/${id}`, body);
+  }
 }

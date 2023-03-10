@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -29,6 +30,7 @@ import { PostListRoutingModule } from './post-list-routing.module';
     MatButtonModule,
     MatDialogModule,
     MatTooltipModule,
+    MatMenuModule,
     FormsModule,
     PortalModule,
   ],
