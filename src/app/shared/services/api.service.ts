@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Pagination } from '../dto/pagination.dto';
-import { PostDto } from '../dto/post.dto';
+import { PostDto, PostInputDto } from '../dto/post.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -55,5 +55,9 @@ export class ApiService {
 
   public patch(id: number, body: Partial<PostDto>): Observable<PostDto> {
     return this.http.patch<PostDto>(`${this.apiUrl}/posts/${id}`, body);
+  }
+
+  public create(post: PostInputDto): Observable<PostDto> {
+    return this.http.post<PostDto>(`${this.apiUrl}/posts`, post);
   }
 }

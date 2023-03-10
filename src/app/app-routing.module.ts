@@ -9,6 +9,11 @@ export const routes: Routes = [
     loadChildren: () => import('./post/post-list/post-list.module').then((m) => m.PostListModule),
   },
   {
+    path: 'create',
+    title: ROUTES.APP.POSTS,
+    loadChildren: () => import('./post/post-create/post-create.module').then((m) => m.PostCreateModule),
+  },
+  {
     path: ':id',
     title: ROUTES.APP.POSTS,
     loadChildren: () => import('./post/post-detail/post-detail.module').then((m) => m.PostDetailModule),

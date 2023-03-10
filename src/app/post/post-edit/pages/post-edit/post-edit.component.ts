@@ -89,4 +89,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
         },
       });
   }
+
+  public onReset(event: Event): void {
+    event.preventDefault();
+    this.form.reset(this.dataSource.data);
+  }
 }

@@ -6,6 +6,12 @@
   </button>
 </mat-form-field>
 
+<div class="flex items-end justify-end gap-2">
+  <a mat-button [routerLink]="[]" [queryParams]="{}">Clear</a>
+
+  <a mat-button [routerLink]="['/create' | localize]">Create</a>
+</div>
+
 <table
   mat-table
   [fixedLayout]="true"
@@ -47,15 +53,15 @@
       <mat-menu #menu="matMenu">
         <a mat-menu-item [routerLink]="['/' | localize, row.id]">
           <mat-icon>info</mat-icon>
-          <span>Post detail</span>
+          <span>Detail</span>
         </a>
         <a mat-menu-item [routerLink]="['/' + row.id + '/edit' | localize]">
           <mat-icon>edit</mat-icon>
-          <span>Edit post detail</span>
+          <span>Edit</span>
         </a>
         <button mat-menu-item (click)="onDelete(row)">
           <mat-icon>delete</mat-icon>
-          <span>Delete post</span>
+          <span>Delete</span>
         </button>
       </mat-menu>
     </td>
