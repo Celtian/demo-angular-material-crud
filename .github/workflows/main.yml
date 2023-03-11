@@ -41,7 +41,7 @@ jobs:
         run: yarn
 
       - name: Build demo app
-        run: yarn build --base-href https://celtian.github.io/demo-angular-material-crud/
+        run: yarn build --base-href https://celtian.github.io/demo-angular-material-crud/ --deploy-url https://celtian.github.io/demo-angular-material-crud/
 
       - name: Deploy Github Pages
         uses: peaceiris/actions-gh-pages@v2.5.0
