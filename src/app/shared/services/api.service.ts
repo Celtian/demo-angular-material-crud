@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Pagination } from '../dto/pagination.dto';
-import { PostDto, PostInputDto } from '../dto/post.dto';
+import { ExpandedPostDto, PostDto, PostInputDto } from '../dto/post.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -59,5 +59,9 @@ export class ApiService {
 
   public create(post: PostInputDto): Observable<PostDto> {
     return this.http.post<PostDto>(`${this.apiUrl}/posts`, post);
+  }
+
+  public detailExpanded(id: number): Observable<ExpandedPostDto> {
+    return this.http.get<ExpandedPostDto>(`${this.apiUrl}/posts/${id}?_expand=user`);
   }
 }

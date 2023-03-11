@@ -118,6 +118,19 @@
   "not-found": {
     "content": "Page was not found"
   },
+  "post-detail": {
+    "about-author": "About author",
+    "user": {
+      "address": "Address",
+      "company": "Company",
+      "email": "Email",
+      "id": "Id",
+      "name": "Name",
+      "phone": "Phone",
+      "username": "Username",
+      "website": "Website"
+    }
+  },
   "response": {
     "create": {
       "failed": "Creation failed",

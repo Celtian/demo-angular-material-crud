@@ -12,9 +12,9 @@ import {
   CustomConfirmDialogService,
 } from 'src/app/confirm-dialog/services/custom-confirm-dialog.service';
 import { DataSource } from 'src/app/shared/classes/data-source';
-import { DEFAULT_POST } from 'src/app/shared/constants/post.constant';
+import { DEFAULT_EXPANEDE_POST } from 'src/app/shared/constants/post.constant';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
-import { PostDto } from 'src/app/shared/dto/post.dto';
+import { ExpandedPostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -30,7 +30,7 @@ import { SeoService } from 'src/app/shared/services/seo.service';
 export class PostDetailComponent implements OnInit, OnDestroy {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
-  public dataSource = new DataSource<PostDto>(DEFAULT_POST);
+  public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANEDE_POST);
   public readonly ROUTES = ROUTES;
 
   constructor(
@@ -84,12 +84,12 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         delay(500),
         tap((id) => {
           if (Number.isNaN(Number(id))) {
-            this.dataSource.setData(DEFAULT_POST);
+            this.dataSource.setData(DEFAULT_EXPANEDE_POST);
             this.cdr.markForCheck();
           }
         }),
         filter((id) => !Number.isNaN(Number(id))),
-        switchMap((id) => this.apiService.detail(Number(id))),
+        switchMap((id) => this.apiService.detailExpanded(Number(id))),
         untilDestroyed(this)
       )
       .subscribe({
@@ -99,7 +99,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
-            this.dataSource.setData(DEFAULT_POST);
+            this.dataSource.setData(DEFAULT_EXPANEDE_POST);
           } else {
             const error = this.translate.instant('ERROR.unexpected-exception');
             this.dataSource.setError(error);

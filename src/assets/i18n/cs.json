@@ -118,6 +118,19 @@
   "not-found": {
     "content": "Stránka nebyla nalezena"
   },
+  "post-detail": {
+    "about-author": "O autorovi",
+    "user": {
+      "address": "Adresa",
+      "company": "Společnost",
+      "email": "Email",
+      "id": "ID",
+      "name": "Jméno",
+      "phone": "Telefon",
+      "username": "Uživatelské jméno",
+      "website": "Web"
+    }
+  },
   "response": {
     "create": {
       "failed": "Vytváření se nezdařilo",
