@@ -7,12 +7,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
-import { delay, filter, first, map, switchMap, tap } from 'rxjs';
-import { ConfirmDialogService } from 'src/app/confirm-dialog/services/confirm-dialog.service';
+import { delay, filter, first, map, Observable, switchMap, tap } from 'rxjs';
+import {
+  CustomConfirmDialog,
+  CustomConfirmDialogService,
+} from 'src/app/confirm-dialog/services/custom-confirm-dialog.service';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_POST } from 'src/app/shared/constants/post.constant';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { PostDto } from 'src/app/shared/dto/post.dto';
+import { CanComponentDeactivate } from 'src/app/shared/guards/can-deactivate-guard.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -25,7 +29,7 @@ import { SeoService } from 'src/app/shared/services/seo.service';
   styleUrls: ['./post-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostEditComponent implements OnInit, OnDestroy {
+export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
   public dataSource = new DataSource<PostDto>(DEFAULT_POST);
@@ -47,9 +51,13 @@ export class PostEditComponent implements OnInit, OnDestroy {
     private language: LanguageService,
     private seoService: SeoService,
     private lr: LocalizeRouterService,
-    private confirm: ConfirmDialogService,
+    private confirm: CustomConfirmDialogService,
     private router: Router
   ) {}
+
+  public canDeactivate(): boolean | Observable<boolean> {
+    return this.form.pristine || this.confirm.openCustomConfirmDialog(CustomConfirmDialog.UnsavedWork);
+  }
 
   public ngOnInit(): void {
     this.breadcrumbsPortalService.setPortal(this.portalContent);
@@ -137,10 +145,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   public onDelete(): void {
-    const title = this.translate.instant('delete-post.title');
-    const content = this.translate.instant('delete-post.content');
     this.confirm
-      .open(title, content)
+      .openCustomConfirmDialog(CustomConfirmDialog.Delete)
       .pipe(
         first(),
         filter((res) => !!res),

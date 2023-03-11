@@ -73,9 +73,19 @@
     "submit": "Submit",
     "yes": "Yes"
   },
-  "delete-post": {
-    "content": "Do you really want to delete post?",
-    "title": "Delete post"
+  "custom-confirm-dialog": {
+    "default": {
+      "content": "Do you want to confirm operation?",
+      "title": "Confirm operation"
+    },
+    "delete-post": {
+      "content": "Do you want to delete post?",
+      "title": "Delete post"
+    },
+    "unsaved-work": {
+      "content": "Do you really want to leave this page?",
+      "title": "Unsaved work"
+    }
   },
   "footer": {
     "content": "All rights reserved © {{ endYear }}"

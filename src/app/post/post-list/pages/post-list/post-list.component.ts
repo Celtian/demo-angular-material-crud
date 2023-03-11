@@ -1,13 +1,15 @@
 import { CdkPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, filter, first, map, switchMap } from 'rxjs';
-import { ConfirmDialogService } from 'src/app/confirm-dialog/services/confirm-dialog.service';
+import {
+  CustomConfirmDialog,
+  CustomConfirmDialogService,
+} from 'src/app/confirm-dialog/services/custom-confirm-dialog.service';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -37,14 +39,13 @@ export class PostListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private breadcrumbsPortalService: BreadcrumbsPortalService,
     private language: LanguageService,
     private seoService: SeoService,
     private lr: LocalizeRouterService,
     private translate: TranslateService,
-    private confirm: ConfirmDialogService
+    private confirm: CustomConfirmDialogService
   ) {}
 
   public ngOnDestroy(): void {
@@ -160,10 +161,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   public onDelete(row: PostDto): void {
-    const title = this.translate.instant('delete-post.title');
-    const content = this.translate.instant('delete-post.content');
     this.confirm
-      .open(title, content)
+      .openCustomConfirmDialog(CustomConfirmDialog.Delete)
       .pipe(
         first(),
         filter((res) => !!res),

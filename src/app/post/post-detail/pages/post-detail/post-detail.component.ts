@@ -7,7 +7,10 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs';
-import { ConfirmDialogService } from 'src/app/confirm-dialog/services/confirm-dialog.service';
+import {
+  CustomConfirmDialog,
+  CustomConfirmDialogService,
+} from 'src/app/confirm-dialog/services/custom-confirm-dialog.service';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_POST } from 'src/app/shared/constants/post.constant';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
@@ -39,7 +42,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     private language: LanguageService,
     private seoService: SeoService,
     private lr: LocalizeRouterService,
-    private confirm: ConfirmDialogService,
+    private confirm: CustomConfirmDialogService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
@@ -107,10 +110,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   public onDelete(): void {
-    const title = this.translate.instant('delete-post.title');
-    const content = this.translate.instant('delete-post.content');
     this.confirm
-      .open(title, content)
+      .openCustomConfirmDialog(CustomConfirmDialog.Delete)
       .pipe(
         first(),
         filter((res) => !!res),
