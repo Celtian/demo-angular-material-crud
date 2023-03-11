@@ -7,13 +7,13 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, filter, first, map, switchMap } from 'rxjs';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/services/confirm-dialog.service';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { SeoService } from 'src/app/shared/services/seo.service';
-import { DeletePostDialogComponent } from '../../components/delete-post-dialog/delete-post-dialog.component';
 
 @UntilDestroy()
 @Component({
@@ -43,7 +43,8 @@ export class PostListComponent implements OnInit, OnDestroy {
     private language: LanguageService,
     private seoService: SeoService,
     private lr: LocalizeRouterService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private confirm: ConfirmDialogService
   ) {}
 
   public ngOnDestroy(): void {
@@ -159,11 +160,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   public onDelete(row: PostDto): void {
-    const dialogRef = this.dialog.open(DeletePostDialogComponent, {
-      width: 'sm',
-    });
-    dialogRef
-      .afterClosed()
+    const title = this.translate.instant('delete-post.title');
+    const content = this.translate.instant('delete-post.content');
+    this.confirm
+      .open(title, content)
       .pipe(
         first(),
         filter((res) => !!res),
@@ -173,10 +173,10 @@ export class PostListComponent implements OnInit, OnDestroy {
         next: () => {
           this.data = this.data.filter((i) => i.id !== row.id);
           this.cdr.markForCheck();
-          this.snackBar.open('Succesfully deleted', 'Close');
+          this.snackBar.open(this.translate.instant('response.delete.success'), this.translate.instant('UNI.close'));
         },
         error: () => {
-          this.snackBar.open('Deletion failed', 'Close');
+          this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('UNI.close'));
         },
       });
   }

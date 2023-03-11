@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
+import { ConfirmDialogModule } from 'src/app/confirm-dialog/confirm-dialog.module';
 import { PostEditComponent } from './pages/post-edit/post-edit.component';
 import { PostEditRoutingModule } from './post-edit-routing.module';
 
@@ -24,6 +25,7 @@ import { PostEditRoutingModule } from './post-edit-routing.module';
     ReactiveFormsModule,
     PostEditRoutingModule,
     TranslateModule,
+    ConfirmDialogModule,
   ],
 })
 export class PostEditModule {}

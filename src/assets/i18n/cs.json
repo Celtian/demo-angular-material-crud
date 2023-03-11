@@ -63,6 +63,7 @@
   "UNI": {
     "clear": "Vymazat",
     "clear-filters": "Vymazat filtry",
+    "close": "Zavřít",
     "create": "Vytvořit",
     "delete": "Smazat",
     "detail": "Detail",
@@ -73,8 +74,8 @@
     "yes": "Ano"
   },
   "delete-post": {
-    "content": "Smazat příspěvek",
-    "title": "Opravdu chcete smazat příspěvek?"
+    "content": "Opravdu chcete smazat příspěvek?",
+    "title": "Smazat příspěvek"
   },
   "footer": {
     "content": "Všechna práva vyhrazena © {{ endYear }}"
@@ -106,6 +107,20 @@
   },
   "not-found": {
     "content": "Stránka nebyla nalezena"
+  },
+  "response": {
+    "create": {
+      "failed": "███",
+      "success": "███"
+    },
+    "delete": {
+      "failed": "Mazání se nezdařilo",
+      "success": "Úspěšně smazáno"
+    },
+    "update": {
+      "failed": "███",
+      "success": "███"
+    }
   },
   "table": {
     "posts": {

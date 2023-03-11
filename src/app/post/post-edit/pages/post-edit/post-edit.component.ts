@@ -3,11 +3,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs';
+import { ConfirmDialogService } from 'src/app/confirm-dialog/services/confirm-dialog.service';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_POST } from 'src/app/shared/constants/post.constant';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
@@ -45,7 +46,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private language: LanguageService,
     private seoService: SeoService,
-    private lr: LocalizeRouterService
+    private lr: LocalizeRouterService,
+    private confirm: ConfirmDialogService,
+    private router: Router
   ) {}
 
   public ngOnInit(): void {
@@ -120,10 +123,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
           this.dataSource.setData(post);
           this.form.reset(post);
           this.cdr.markForCheck();
-          this.snackBar.open('Succesfully updated', 'Close');
+          this.snackBar.open(this.translate.instant('response.update.success'), this.translate.instant('UNI.close'));
         },
         error: () => {
-          this.snackBar.open('Update failed', 'Close');
+          this.snackBar.open(this.translate.instant('response.update.failed'), this.translate.instant('UNI.close'));
         },
       });
   }
@@ -131,5 +134,27 @@ export class PostEditComponent implements OnInit, OnDestroy {
   public onReset(event: Event): void {
     event.preventDefault();
     this.form.reset(this.dataSource.data);
+  }
+
+  public onDelete(): void {
+    const title = this.translate.instant('delete-post.title');
+    const content = this.translate.instant('delete-post.content');
+    this.confirm
+      .open(title, content)
+      .pipe(
+        first(),
+        filter((res) => !!res),
+        switchMap(() => this.apiService.delete(this.dataSource.data.id))
+      )
+      .subscribe({
+        next: () => {
+          this.snackBar.open(this.translate.instant('response.delete.success'), this.translate.instant('UNI.close'));
+          const translatedRoute = this.lr.translateRoute(`/`);
+          this.router.navigate([translatedRoute]);
+        },
+        error: () => {
+          this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('UNI.close'));
+        },
+      });
   }
 }

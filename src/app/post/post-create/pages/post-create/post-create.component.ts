@@ -71,12 +71,12 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         next: (post) => {
           this.form.reset(post);
           this.cdr.markForCheck();
-          this.snackBar.open('Succesfully created', 'Close');
+          this.snackBar.open(this.translate.instant('response.create.success'), this.translate.instant('UNI.close'));
           const translatedRoute = this.lr.translateRoute(`/`);
           this.router.navigate([translatedRoute]);
         },
         error: () => {
-          this.snackBar.open('Creation failed', 'Close');
+          this.snackBar.open(this.translate.instant('response.create.failed'), this.translate.instant('UNI.close'));
         },
       });
   }

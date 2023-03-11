@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { ConfirmDialogModule } from 'src/app/confirm-dialog/confirm-dialog.module';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { PostDetailRoutingModule } from './post-detail-routing.module';
 
@@ -18,6 +19,7 @@ import { PostDetailRoutingModule } from './post-detail-routing.module';
     MatButtonModule,
     PortalModule,
     TranslateModule,
+    ConfirmDialogModule,
   ],
 })
 export class PostDetailModule {}

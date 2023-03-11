@@ -63,6 +63,7 @@
   "UNI": {
     "clear": "Clear",
     "clear-filters": "Clear filters",
+    "close": "Close",
     "create": "Create",
     "delete": "Delete",
     "detail": "Detail",
@@ -106,6 +107,20 @@
   },
   "not-found": {
     "content": "Page was not found"
+  },
+  "response": {
+    "create": {
+      "failed": "Creation failed",
+      "success": "Successfully created"
+    },
+    "delete": {
+      "failed": "Deletion failed",
+      "success": "Successfully deleted"
+    },
+    "update": {
+      "failed": "Update failed",
+      "success": "Succesfully updated"
+    }
   },
   "table": {
     "posts": {
