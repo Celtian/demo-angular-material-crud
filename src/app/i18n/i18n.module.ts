@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { APP_BASE_HREF, Location, PlatformLocation } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Inject, ModuleWithProviders, NgModule, PLATFORM_ID } from '@angular/core';
 import { LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings } from '@gilsdav/ngx-translate-router';
@@ -14,16 +14,31 @@ import { localizeLoaderFactory, translateLoaderFactory } from './translate-loade
       loader: {
         provide: TranslateLoader,
         useFactory: translateLoaderFactory,
-        deps: [HttpClient, PLATFORM_ID, I18N_CONFIG_TOKEN],
+        deps: [HttpClient, PLATFORM_ID, I18N_CONFIG_TOKEN, APP_BASE_HREF],
       },
     }),
     LocalizeRouterModule.forRoot(routes, {
       parser: {
         provide: LocalizeParser,
         useFactory: localizeLoaderFactory,
-        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient, PLATFORM_ID, I18N_CONFIG_TOKEN],
+        deps: [
+          TranslateService,
+          Location,
+          LocalizeRouterSettings,
+          HttpClient,
+          PLATFORM_ID,
+          I18N_CONFIG_TOKEN,
+          APP_BASE_HREF,
+        ],
       },
     }),
+  ],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (platformLocation: PlatformLocation): string => platformLocation.getBaseHrefFromDOM(),
+      deps: [PlatformLocation],
+    },
   ],
   exports: [TranslateModule, LocalizeRouterModule],
 })
