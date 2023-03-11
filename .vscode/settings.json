@@ -1,6 +1,6 @@
 {
   "workbench.colorCustomizations": {
-    "statusBar.background": "#e66d35",
+    "statusBar.background": "#3f51b5",
     "statusBar.foreground": "#ffffff"
   },
   "editor.codeActionsOnSave": {
