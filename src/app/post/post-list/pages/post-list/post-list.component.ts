@@ -43,7 +43,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   public totalCount = 0;
   public query = '';
   public expandedElement: any | null;
-  public animationInProgress = false;
 
   constructor(
     private apiService: ApiService,
@@ -193,11 +192,11 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   public onExpand(event: Event, element: any): void {
     this.expandedElement = this.expandedElement === element ? null : element;
-    this.animationInProgress = true;
+    this.cdr.markForCheck();
     event.stopPropagation();
-    setTimeout(() => {
-      this.animationInProgress = false;
-      this.cdr.markForCheck();
-    }, 225); // duration of animation is 225ms ... then remove from DOM to prevent performance issues
+  }
+
+  public trackByPostId(index: number, target: PostDto): string | number {
+    return target.id;
   }
 }

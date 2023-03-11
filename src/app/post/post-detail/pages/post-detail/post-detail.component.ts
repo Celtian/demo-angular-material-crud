@@ -12,7 +12,7 @@ import {
   CustomConfirmDialogService,
 } from 'src/app/confirm-dialog/services/custom-confirm-dialog.service';
 import { DataSource } from 'src/app/shared/classes/data-source';
-import { DEFAULT_EXPANEDE_POST } from 'src/app/shared/constants/post.constant';
+import { DEFAULT_EXPANDED_POST } from 'src/app/shared/constants/post.constant';
 import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { ExpandedPostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -30,7 +30,7 @@ import { SeoService } from 'src/app/shared/services/seo.service';
 export class PostDetailComponent implements OnInit, OnDestroy {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
-  public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANEDE_POST);
+  public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST);
   public readonly ROUTES = ROUTES;
 
   constructor(
@@ -84,7 +84,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         delay(500),
         tap((id) => {
           if (Number.isNaN(Number(id))) {
-            this.dataSource.setData(DEFAULT_EXPANEDE_POST);
+            this.dataSource.setData(DEFAULT_EXPANDED_POST);
             this.cdr.markForCheck();
           }
         }),
@@ -99,7 +99,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
-            this.dataSource.setData(DEFAULT_EXPANEDE_POST);
+            this.dataSource.setData(DEFAULT_EXPANDED_POST);
           } else {
             const error = this.translate.instant('ERROR.unexpected-exception');
             this.dataSource.setError(error);

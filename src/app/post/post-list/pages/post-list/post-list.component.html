@@ -33,6 +33,7 @@
   matSortDirection="asc"
   matSortDisableClear
   multiTemplateDataRows
+  [trackBy]="trackByPostId"
   (matSortChange)="onSortChange($event)"
 >
   <colgroup>
@@ -102,30 +103,34 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumnsExpanded.length">
       <div [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
-        <table *ngIf="expandedElement === element || animationInProgress" [class.my-2]="element === expandedElement">
-          <colgroup>
-            <col width="120" />
-            <col />
-          </colgroup>
-          <tbody>
-            <tr class="align-baseline">
-              <td class="font-bold">ID</td>
-              <td>{{ '#' + element.id }}</td>
-            </tr>
-            <tr class="align-baseline">
-              <td class="font-bold">UserId</td>
-              <td>{{ '#' + element.userId }}</td>
-            </tr>
-            <tr class="align-baseline">
-              <td class="font-bold">Title</td>
-              <td>{{ element.title }}</td>
-            </tr>
-            <tr class="align-baseline">
-              <td class="font-bold">Body</td>
-              <td>{{ element.body }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div *ngIf="expandedElement === element" [class.my-2]="element === expandedElement">
+          <app-post-list-detail [id]="element.userId">
+            <table>
+              <colgroup>
+                <col width="120" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr class="align-baseline">
+                  <td class="font-bold">{{ 'table.posts.id.title' | translate }}</td>
+                  <td>{{ '#' + element.id }}</td>
+                </tr>
+                <tr class="align-baseline">
+                  <td class="font-bold">{{ 'table.posts.user-id.title' | translate }}</td>
+                  <td>{{ '#' + element.userId }}</td>
+                </tr>
+                <tr class="align-baseline">
+                  <td class="font-bold">{{ 'table.posts.title.title' | translate }}</td>
+                  <td>{{ element.title }}</td>
+                </tr>
+                <tr class="align-baseline">
+                  <td class="font-bold">{{ 'table.posts.body.title' | translate }}</td>
+                  <td>{{ element.body }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </app-post-list-detail>
+        </div>
       </div>
     </td>
   </ng-container>

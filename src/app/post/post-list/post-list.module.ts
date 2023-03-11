@@ -15,9 +15,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmDialogModule } from 'src/app/confirm-dialog/confirm-dialog.module';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { PostListRoutingModule } from './post-list-routing.module';
+import { PostListDetailComponent } from './components/post-list-detail/post-list-detail.component';
 
 @NgModule({
-  declarations: [PostListComponent],
+  declarations: [PostListComponent, PostListDetailComponent],
   imports: [
     CommonModule,
     PostListRoutingModule,

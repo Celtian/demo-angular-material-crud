@@ -8,7 +8,7 @@ export const DEFAULT_POST: PostDto = {
   userId: 1,
 };
 
-export const DEFAULT_EXPANEDE_POST: ExpandedPostDto = {
+export const DEFAULT_EXPANDED_POST: ExpandedPostDto = {
   ...DEFAULT_POST,
   user: DEFAULT_USER,
 };

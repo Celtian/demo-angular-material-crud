@@ -1,0 +1,58 @@
+<div class="mb-2 font-bold">{{ 'post-detail.about-post' | translate }}</div>
+
+<ng-content></ng-content>
+
+<div class="my-2 font-bold" [class.blur-sm]="dataSource.state === 'loading'">
+  {{ 'post-detail.about-author' | translate }}
+</div>
+
+<table class="w-full" [class.blur-sm]="dataSource.state === 'loading'">
+  <colgroup>
+    <col width="120" />
+    <col />
+  </colgroup>
+  <tbody *ngIf="dataSource.data">
+    <tr>
+      <td class="font-bold">{{ 'post-detail.user.id' | translate }}</td>
+      <td>{{ '#' + dataSource.data.id }}</td>
+    </tr>
+    <tr>
+      <td class="font-bold">{{ 'post-detail.user.name' | translate }}</td>
+      <td>{{ dataSource.data.name }}</td>
+    </tr>
+    <tr>
+      <td class="font-bold">{{ 'post-detail.user.username' | translate }}</td>
+      <td>{{ dataSource.data.username }}</td>
+    </tr>
+    <tr>
+      <td class="font-bold">{{ 'post-detail.user.email' | translate }}</td>
+      <td>{{ dataSource.data.email }}</td>
+    </tr>
+    <tr>
+      <td class="font-bold">{{ 'post-detail.user.phone' | translate }}</td>
+      <td>{{ dataSource.data.phone }}</td>
+    </tr>
+    <tr>
+      <td class="font-bold">{{ 'post-detail.user.website' | translate }}</td>
+      <td>{{ dataSource.data.website }}</td>
+    </tr>
+    <tr *ngIf="dataSource.data.address" class="align-baseline">
+      <td class="font-bold">{{ 'post-detail.user.address' | translate }}</td>
+      <td>
+        <div>{{ dataSource.data.address.street }}</div>
+        <div>{{ dataSource.data.address.suite }}</div>
+        <div>{{ dataSource.data.address.city }}</div>
+        <div>{{ dataSource.data.address.zipcode }}</div>
+        <div>{{ dataSource.data.address.geo.lat }}, {{ dataSource.data.address.geo.lng }}</div>
+      </td>
+    </tr>
+    <tr *ngIf="dataSource.data.company" class="align-baseline">
+      <td class="font-bold">{{ 'post-detail.user.company' | translate }}</td>
+      <td>
+        <div>{{ dataSource.data.company.name }}</div>
+        <div>{{ dataSource.data.company.catchPhrase }}</div>
+        <div>{{ dataSource.data.company.bs }}</div>
+      </td>
+    </tr>
+  </tbody>
+</table>

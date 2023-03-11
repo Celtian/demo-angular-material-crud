@@ -120,6 +120,7 @@
   },
   "post-detail": {
     "about-author": "O autorovi",
+    "about-post": "Obsah příspěvku",
     "user": {
       "address": "Adresa",
       "company": "Společnost",

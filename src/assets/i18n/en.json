@@ -120,6 +120,7 @@
   },
   "post-detail": {
     "about-author": "About author",
+    "about-post": "Post content",
     "user": {
       "address": "Address",
       "company": "Company",

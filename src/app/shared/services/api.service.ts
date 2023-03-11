@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Pagination } from '../dto/pagination.dto';
 import { ExpandedPostDto, PostDto, PostInputDto } from '../dto/post.dto';
+import { UserDto } from '../dto/user.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -63,5 +64,9 @@ export class ApiService {
 
   public detailExpanded(id: number): Observable<ExpandedPostDto> {
     return this.http.get<ExpandedPostDto>(`${this.apiUrl}/posts/${id}?_expand=user`);
+  }
+
+  public user(id: number): Observable<UserDto> {
+    return this.http.get<UserDto>(`${this.apiUrl}/users/${id}`);
   }
 }

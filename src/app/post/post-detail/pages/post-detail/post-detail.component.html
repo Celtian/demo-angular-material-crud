@@ -10,14 +10,20 @@
       <mat-card-subtitle [class.blur-sm]="dataSource.state === 'loading'">{{
         '#' + dataSource.data.id
       }}</mat-card-subtitle>
-      <mat-card-title [class.blur-sm]="dataSource.state === 'loading'">{{ dataSource.data.title }}</mat-card-title>
+      <mat-card-title [class.blur-sm]="dataSource.state === 'loading'">{{
+        dataSource.data.title | uppercase
+      }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <p class="mb-2 font-semibold text-md" [class.blur-sm]="dataSource.state === 'loading'">
+        {{ 'post-detail.about-post' | translate }}
+      </p>
+
       <p [class.blur-sm]="dataSource.state === 'loading'">
         {{ dataSource.data.body }}
       </p>
 
-      <p class="mb-2 text-lg font-semibold" [class.blur-sm]="dataSource.state === 'loading'">
+      <p class="mb-2 font-semibold text-md" [class.blur-sm]="dataSource.state === 'loading'">
         {{ 'post-detail.about-author' | translate }}
       </p>
 
