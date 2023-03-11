@@ -6,6 +6,7 @@
 - Components: Angular 15, Angular Material, Tailwind CSS
 - Software: Visual Studio Code
 - See [Humans.txt](https://celtian.github.io/demo-angular-material-crud/humans.txt)
+- Api taken from [here](https://jsonplaceholder.typicode.com)
 - Deployed [here](https://celtian.github.io/demo-angular-material-crud/)
 
 ## Instalation
