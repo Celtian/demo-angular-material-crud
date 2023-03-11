@@ -1,4 +1,13 @@
 {
+  "BREADCRUBMS": {
+    "app": {
+      "posts": "Posts"
+    },
+    "posts": {
+      "create": "Create",
+      "edit": "Edit"
+    }
+  },
   "ERROR": {
     "post-was-not-found": "Post was not found",
     "unexpected-exception": "Unexpected error"
@@ -53,6 +62,7 @@
   },
   "UNI": {
     "clear": "Clear",
+    "clear-filters": "Clear filters",
     "create": "Create",
     "delete": "Delete",
     "edit": "Edit",
@@ -61,7 +71,39 @@
     "submit": "Submit",
     "yes": "Yes"
   },
+  "delete-post": {
+    "content": "Do you really want to delete post?",
+    "title": "Delete post"
+  },
   "footer": {
     "content": "All rights reserved © {{ endYear }}"
+  },
+  "form": {
+    "post": {
+      "body": {
+        "label": "Body",
+        "placeholder": "Type something here…"
+      },
+      "title": {
+        "label": "Title"
+      }
+    }
+  },
+  "input": {
+    "search": {
+      "label": "Search",
+      "placeholder": "Type something here…"
+    }
+  },
+  "mat-paginator": {
+    "first-page": "First page",
+    "items-per-page": "Items per page",
+    "last-page": "Last page",
+    "next-page": "Next page",
+    "of": "from",
+    "previous-page": "Previous page"
+  },
+  "not-found": {
+    "content": "Page was not found"
   }
 }

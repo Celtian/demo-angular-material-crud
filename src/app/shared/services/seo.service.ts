@@ -9,7 +9,7 @@ import { SeoDto } from '../dto/seo.dto';
   providedIn: 'root',
 })
 export class SeoService {
-  private readonly siteName = 'demo-angular-material-crud';
+  private readonly siteName = 'CRUD demo';
   private seoSubj = new Subject<SeoDto>();
 
   constructor(@Inject(DOCUMENT) private doc: any, private meta: Meta) {

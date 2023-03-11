@@ -51,13 +51,11 @@ export class PostEditComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.breadcrumbsPortalService.setPortal(this.portalContent);
 
-    const idFromRoute = this.route.paramMap.pipe(
-      map((paramMap) => paramMap.get('id')),
-      filter((id) => !Number.isNaN(Number(id)))
-    );
+    const idFromRoute = this.route.paramMap.pipe(map((paramMap) => paramMap.get('id')));
 
     idFromRoute
       .pipe(
+        filter((id) => !Number.isNaN(Number(id))),
         switchMap((id) =>
           this.language.language$.pipe(
             tap({
@@ -81,6 +79,13 @@ export class PostEditComponent implements OnInit, OnDestroy {
     idFromRoute
       .pipe(
         delay(500),
+        tap((id) => {
+          if (Number.isNaN(Number(id))) {
+            this.dataSource.setData(DEFAULT_POST);
+            this.cdr.markForCheck();
+          }
+        }),
+        filter((id) => !Number.isNaN(Number(id))),
         switchMap((id) => this.apiService.detail(Number(id))),
         untilDestroyed(this)
       )

@@ -1,20 +1,25 @@
 <mat-form-field class="w-full">
-  <mat-label>Filter</mat-label>
-  <input matInput (input)="onQueryChange($event)" placeholder="Type something here" [(ngModel)]="query" />
+  <mat-label>{{ 'input.search.label' | translate }}</mat-label>
+  <input
+    matInput
+    (input)="onQueryChange($event)"
+    [placeholder]="'input.search.placeholder' | translate"
+    [(ngModel)]="query"
+  />
   <button
     *ngIf="query"
     matSuffix
     mat-icon-button
     [attr.aria-label]="'UNI.clear' | translate"
     (click)="onQueryRemove()"
-    matTooltip="Clear"
+    [matTooltip]="'UNI.clear' | translate"
   >
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
 
 <div class="flex items-end justify-end gap-2">
-  <button mat-button (click)="onClear()">{{ 'UNI.clear' | translate }}</button>
+  <button mat-button (click)="onClear()">{{ 'UNI.clear-filters' | translate }}</button>
 
   <a mat-button [routerLink]="['/' + ROUTES.POSTS.CREATE | localize]">{{ 'UNI.create' | translate }}</a>
 </div>
@@ -86,5 +91,5 @@
 ></mat-paginator>
 
 <div *cdkPortal class="container py-4">
-  <a mat-button color="primary" [routerLink]="['/' | localize]">Posts</a>
+  <a mat-button color="primary" [routerLink]="['/' | localize]">{{ 'BREADCRUBMS.app.posts' | translate }}</a>
 </div>

@@ -1,4 +1,13 @@
 {
+  "BREADCRUBMS": {
+    "app": {
+      "posts": "Příspěvky"
+    },
+    "posts": {
+      "create": "Vytvořit",
+      "edit": "Upravit"
+    }
+  },
   "ERROR": {
     "post-was-not-found": "Příspěvek nebyl nalezen",
     "unexpected-exception": "Neočekávaná chyba"
@@ -53,6 +62,7 @@
   },
   "UNI": {
     "clear": "Vymazat",
+    "clear-filters": "Vymazat filtry",
     "create": "Vytvořit",
     "delete": "Smazat",
     "edit": "Upravit",
@@ -61,7 +71,39 @@
     "submit": "Potvrdit",
     "yes": "Ano"
   },
+  "delete-post": {
+    "content": "Smazat příspěvek",
+    "title": "Opravdu chcete smazat příspěvek?"
+  },
   "footer": {
     "content": "Všechna práva vyhrazena © {{ endYear }}"
+  },
+  "form": {
+    "post": {
+      "body": {
+        "label": "Obsah",
+        "placeholder": "Napiště něco zde…"
+      },
+      "title": {
+        "label": "Název"
+      }
+    }
+  },
+  "input": {
+    "search": {
+      "label": "Vyhledávání",
+      "placeholder": "Začněte zde psát…"
+    }
+  },
+  "mat-paginator": {
+    "first-page": "První stránka",
+    "items-per-page": "Položek na stránku",
+    "last-page": "Poslední stránka",
+    "next-page": "Další stránka",
+    "of": "z",
+    "previous-page": "Předchozí stránka"
+  },
+  "not-found": {
+    "content": "Stránka nebyla nalezena"
   }
 }
