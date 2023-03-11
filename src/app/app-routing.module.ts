@@ -10,17 +10,17 @@ export const routes: Routes = [
   },
   {
     path: 'create',
-    title: ROUTES.APP.POSTS,
+    title: ROUTES.POSTS.CREATE,
     loadChildren: () => import('./post/post-create/post-create.module').then((m) => m.PostCreateModule),
   },
   {
     path: ':id',
-    title: ROUTES.APP.POSTS,
+    title: ROUTES.POSTS.DETAIL,
     loadChildren: () => import('./post/post-detail/post-detail.module').then((m) => m.PostDetailModule),
   },
   {
     path: ':id/edit',
-    title: ROUTES.APP.POSTS,
+    title: ROUTES.POSTS.EDIT,
     loadChildren: () => import('./post/post-edit/post-edit.module').then((m) => m.PostEditModule),
   },
   {

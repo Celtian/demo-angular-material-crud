@@ -3,11 +3,16 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, filter, first, map, switchMap } from 'rxjs';
+import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { SeoService } from 'src/app/shared/services/seo.service';
 import { DeletePostDialogComponent } from '../../components/delete-post-dialog/delete-post-dialog.component';
 
 @UntilDestroy()
@@ -33,7 +38,11 @@ export class PostListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private breadcrumbsPortalService: BreadcrumbsPortalService
+    private breadcrumbsPortalService: BreadcrumbsPortalService,
+    private language: LanguageService,
+    private seoService: SeoService,
+    private lr: LocalizeRouterService,
+    private translate: TranslateService
   ) {}
 
   public ngOnDestroy(): void {
@@ -42,6 +51,17 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.breadcrumbsPortalService.setPortal(this.portalContent);
+
+    this.language.language$.pipe(untilDestroyed(this)).subscribe(() => {
+      const canonical = this.lr.translateRoute(`/`) as string;
+      this.seoService.setSeo(
+        {
+          title: this.translate.instant(`SEO.${ROUTES.APP.POSTS}.title`),
+          description: this.translate.instant(`SEO.${ROUTES.APP.POSTS}.description`),
+        },
+        canonical
+      );
+    });
 
     this.route.queryParamMap
       .pipe(
@@ -80,7 +100,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       queryParams: {
         sortBy: event.active,
         sortDirection: event.direction,
-        pageIndex: 0,
+        pageIndex: null,
       },
       queryParamsHandling: 'merge',
       replaceUrl: true,
@@ -103,7 +123,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.router.navigate([], {
       queryParams: {
         query: query ? encodeURIComponent(query) : null,
-        pageIndex: 0,
+        pageIndex: null,
       },
       queryParamsHandling: 'merge',
       replaceUrl: true,
@@ -115,7 +135,22 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.router.navigate([], {
       queryParams: {
         query: null,
-        pageIndex: 0,
+        pageIndex: null,
+      },
+      queryParamsHandling: 'merge',
+      replaceUrl: true,
+    });
+  }
+
+  public onClear(): void {
+    this.query = '';
+    this.router.navigate([], {
+      queryParams: {
+        query: null,
+        pageIndex: null,
+        pageSize: null,
+        sortBy: null,
+        sortDirection: null,
       },
       queryParamsHandling: 'merge',
       replaceUrl: true,

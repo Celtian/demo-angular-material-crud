@@ -4,11 +4,15 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
+import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { PostInputDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { SeoService } from 'src/app/shared/services/seo.service';
 
 @UntilDestroy()
 @Component({
@@ -33,12 +37,26 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private router: Router,
-    private lr: LocalizeRouterService
+    private lr: LocalizeRouterService,
+    private language: LanguageService,
+    private seoService: SeoService,
+    private translate: TranslateService
   ) {}
 
   public ngOnInit(): void {
     this.breadcrumbsPortalService.setPortal(this.portalContent);
-    setTimeout(() => this.cdr.detectChanges(), 500);
+    setTimeout(() => this.cdr.detectChanges(), 0);
+
+    this.language.language$.pipe(untilDestroyed(this)).subscribe(() => {
+      const canonical = this.lr.translateRoute(`/${ROUTES.POSTS.CREATE}`) as string;
+      this.seoService.setSeo(
+        {
+          title: this.translate.instant(`SEO.${ROUTES.POSTS.CREATE}.title`),
+          description: this.translate.instant(`SEO.${ROUTES.POSTS.CREATE}.description`),
+        },
+        canonical
+      );
+    });
   }
 
   public ngOnDestroy(): void {

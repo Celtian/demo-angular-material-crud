@@ -4,14 +4,18 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
-import { delay, filter, first, map, switchMap } from 'rxjs';
+import { delay, filter, first, map, switchMap, tap } from 'rxjs';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_POST } from 'src/app/shared/constants/post.constant';
+import { ROUTES } from 'src/app/shared/constants/route.constant';
 import { PostDto } from 'src/app/shared/dto/post.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { SeoService } from 'src/app/shared/services/seo.service';
 
 @UntilDestroy()
 @Component({
@@ -37,17 +41,45 @@ export class PostEditComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private breadcrumbsPortalService: BreadcrumbsPortalService,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private language: LanguageService,
+    private seoService: SeoService,
+    private lr: LocalizeRouterService
   ) {}
 
   public ngOnInit(): void {
     this.breadcrumbsPortalService.setPortal(this.portalContent);
 
-    this.route.paramMap
+    const idFromRoute = this.route.paramMap.pipe(
+      map((paramMap) => paramMap.get('id')),
+      filter((id) => !Number.isNaN(Number(id)))
+    );
+
+    idFromRoute
+      .pipe(
+        switchMap((id) =>
+          this.language.language$.pipe(
+            tap({
+              next: () => {
+                const canonical = this.lr.translateRoute(`/${id}/${ROUTES.POSTS.EDIT}`) as string;
+                this.seoService.setSeo(
+                  {
+                    title: this.translate.instant(`SEO.${ROUTES.POSTS.EDIT}.title`),
+                    description: this.translate.instant(`SEO.${ROUTES.POSTS.EDIT}.description`),
+                  },
+                  canonical
+                );
+              },
+            })
+          )
+        ),
+        untilDestroyed(this)
+      )
+      .subscribe();
+
+    idFromRoute
       .pipe(
         delay(500),
-        map((paramMap) => paramMap.get('id')),
-        filter((id) => !Number.isNaN(Number(id))),
         switchMap((id) => this.apiService.detail(Number(id))),
         untilDestroyed(this)
       )

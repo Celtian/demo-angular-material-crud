@@ -1,10 +1,14 @@
 import { Portal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NgxAppVersionDirective } from 'ngx-app-version';
 import { Observable } from 'rxjs';
 import { VERSION } from 'src/environments/version';
+import { DEFAULT_LANGUAGE } from './shared/constants/language.constant';
 import { BreadcrumbsPortalService } from './shared/services/breadcrumbs-portal.service';
+import { LanguageService } from './shared/services/language.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,12 +18,15 @@ import { BreadcrumbsPortalService } from './shared/services/breadcrumbs-portal.s
 })
 export class AppComponent implements OnInit {
   public endYear = new Date(VERSION.date).getFullYear();
-
   public breadcrumbsPortal$!: Observable<Portal<any>>;
+  public lang = DEFAULT_LANGUAGE;
 
-  constructor(private breadcrumbsPortalService: BreadcrumbsPortalService) {}
+  constructor(private breadcrumbsPortalService: BreadcrumbsPortalService, private language: LanguageService) {
+    this.language.initLang();
+  }
 
   public ngOnInit(): void {
     this.breadcrumbsPortal$ = this.breadcrumbsPortalService.portal$;
+    this.language.language$.pipe(untilDestroyed(this)).subscribe((language) => (this.lang = language));
   }
 }

@@ -7,7 +7,7 @@
 </mat-form-field>
 
 <div class="flex items-end justify-end gap-2">
-  <a mat-button [routerLink]="[]" [queryParams]="{}">Clear</a>
+  <button mat-button (click)="onClear()">Clear</button>
 
   <a mat-button [routerLink]="['/create' | localize]">Create</a>
 </div>
