@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CdkPortal } from '@angular/cdk/portal';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -23,16 +24,26 @@ import { SeoService } from 'src/app/shared/services/seo.service';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class PostListComponent implements OnInit, OnDestroy {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
   public readonly ROUTES = ROUTES;
   public readonly displayedColumns: string[] = ['id', 'title', 'actions'];
+  public readonly displayedColumnsExpanded = [...this.displayedColumns, 'expand'];
   public readonly pageSizeOptions = [5, 10, 25, 100];
   public data: PostDto[] = [];
   public totalCount = 0;
   public query = '';
+  public expandedElement: any | null;
+  public animationInProgress = false;
 
   constructor(
     private apiService: ApiService,
@@ -178,5 +189,15 @@ export class PostListComponent implements OnInit, OnDestroy {
           this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('UNI.close'));
         },
       });
+  }
+
+  public onExpand(event: Event, element: any): void {
+    this.expandedElement = this.expandedElement === element ? null : element;
+    this.animationInProgress = true;
+    event.stopPropagation();
+    setTimeout(() => {
+      this.animationInProgress = false;
+      this.cdr.markForCheck();
+    }, 225); // duration of animation is 225ms ... then remove from DOM to prevent performance issues
   }
 }

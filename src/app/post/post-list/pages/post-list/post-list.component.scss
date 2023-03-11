@@ -1,3 +1,7 @@
 :host {
   @apply block container py-4 space-y-2;
 }
+
+tr.expandable-row {
+  @apply h-0;
+}
