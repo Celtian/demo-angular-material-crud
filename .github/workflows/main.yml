@@ -43,6 +43,9 @@ jobs:
       - name: Build demo app
         run: yarn build --base-href https://celtian.github.io/demo-angular-material-crud/
 
+      - name: Copy index.html to 404.html
+        run: cp ./dist/demo-angular-material-crud/index.html ./dist/demo-angular-material-crud/404.html
+
       - name: Deploy Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
