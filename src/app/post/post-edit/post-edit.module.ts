@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { PostEditComponent } from './pages/post-edit/post-edit.component';
 import { PostEditRoutingModule } from './post-edit-routing.module';
 
@@ -22,6 +23,7 @@ import { PostEditRoutingModule } from './post-edit-routing.module';
     MatTooltipModule,
     ReactiveFormsModule,
     PostEditRoutingModule,
+    TranslateModule,
   ],
 })
 export class PostEditModule {}

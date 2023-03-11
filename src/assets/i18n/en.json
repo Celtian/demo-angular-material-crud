@@ -51,6 +51,16 @@
       "edit": "Edit post"
     }
   },
+  "UNI": {
+    "clear": "Clear",
+    "create": "Create",
+    "delete": "Delete",
+    "edit": "Edit",
+    "no": "No",
+    "reset": "Reset",
+    "submit": "Submit",
+    "yes": "Yes"
+  },
   "footer": {
     "content": "All rights reserved © {{ endYear }}"
   }

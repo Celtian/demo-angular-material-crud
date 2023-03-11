@@ -9,7 +9,7 @@ export const routes: Routes = [
     loadChildren: () => import('./post/post-list/post-list.module').then((m) => m.PostListModule),
   },
   {
-    path: 'create',
+    path: ROUTES.POSTS.CREATE,
     title: ROUTES.POSTS.CREATE,
     loadChildren: () => import('./post/post-create/post-create.module').then((m) => m.PostCreateModule),
   },
@@ -19,7 +19,7 @@ export const routes: Routes = [
     loadChildren: () => import('./post/post-detail/post-detail.module').then((m) => m.PostDetailModule),
   },
   {
-    path: ':id/edit',
+    path: `:id/${ROUTES.POSTS.EDIT}`,
     title: ROUTES.POSTS.EDIT,
     loadChildren: () => import('./post/post-edit/post-edit.module').then((m) => m.PostEditModule),
   },

@@ -51,6 +51,16 @@
       "edit": "Upravit příspěvek"
     }
   },
+  "UNI": {
+    "clear": "Vymazat",
+    "create": "Vytvořit",
+    "delete": "Smazat",
+    "edit": "Upravit",
+    "no": "Ne",
+    "reset": "Resetovat",
+    "submit": "Potvrdit",
+    "yes": "Ano"
+  },
   "footer": {
     "content": "Všechna práva vyhrazena © {{ endYear }}"
   }

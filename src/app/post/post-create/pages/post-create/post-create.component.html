@@ -12,9 +12,9 @@
           *ngIf="form.controls.title.value"
           matSuffix
           mat-icon-button
-          aria-label="Clear"
+          [attr.aria-label]="'UNI.clear' | translate"
           (click)="form.controls.title.setValue('')"
-          matTooltip="Clear"
+          [matTooltip]="'UNI.clear' | translate"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -27,9 +27,9 @@
           *ngIf="form.controls.body.value"
           matSuffix
           mat-icon-button
-          aria-label="Clear"
+          [attr.aria-label]="'UNI.clear' | translate"
           (click)="form.controls.body.setValue('')"
-          matTooltip="Clear"
+          [matTooltip]="'UNI.clear' | translate"
         >
           <mat-icon>close</mat-icon>
         </button>

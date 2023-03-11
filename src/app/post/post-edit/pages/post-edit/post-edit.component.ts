@@ -28,6 +28,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
   public dataSource = new DataSource<PostDto>(DEFAULT_POST);
+  public readonly ROUTES = ROUTES;
 
   public form = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.min(3)]],

@@ -12,9 +12,9 @@
           *ngIf="form.controls.title.value"
           matSuffix
           mat-icon-button
-          aria-label="Clear"
+          [attr.aria-label]="'UNI.clear' | translate"
           (click)="form.controls.title.setValue('')"
-          matTooltip="Clear"
+          [matTooltip]="'UNI.clear' | translate"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -27,17 +27,21 @@
           *ngIf="form.controls.body.value"
           matSuffix
           mat-icon-button
-          aria-label="Clear"
+          [attr.aria-label]="'UNI.clear' | translate"
           (click)="form.controls.body.setValue('')"
-          matTooltip="Clear"
+          [matTooltip]="'UNI.clear' | translate"
         >
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
 
       <div class="flex justify-center gap-2">
-        <button mat-button color="primary" [disabled]="form.pristine" type="reset">Reset</button>
-        <button mat-flat-button color="primary" type="submit" [disabled]="form.pristine || form.invalid">Submit</button>
+        <button mat-button color="primary" [disabled]="form.pristine" type="reset">
+          {{ 'UNI.reset' | translate }}
+        </button>
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.pristine || form.invalid">
+          {{ 'UNI.submit' | translate }}
+        </button>
       </div>
     </form>
   </mat-card-content>
@@ -49,6 +53,8 @@
     <mat-icon aria-hidden="false" aria-label="Arrow icon" fontIcon="chevron_right"></mat-icon>
     <a mat-button color="primary" [routerLink]="['/' | localize, dataSource.data.id]">{{ dataSource.data.id }}</a>
     <mat-icon aria-hidden="false" aria-label="Arrow icon" fontIcon="chevron_right"></mat-icon>
-    <a mat-button color="primary" [routerLink]="['/' + dataSource.data.id + '/edit' | localize]">edit</a>
+    <a mat-button color="primary" [routerLink]="['/' + dataSource.data.id + '/' + ROUTES.POSTS.EDIT | localize]"
+      >edit</a
+    >
   </ng-container>
 </div>

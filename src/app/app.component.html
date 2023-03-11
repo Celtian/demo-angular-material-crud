@@ -1,7 +1,9 @@
 <header class="z-10 sticky-top">
   <mat-toolbar color="primary" role="navigation">
-    <nav class="container flex items-center gap-2">
+    <nav class="container flex items-center justify-between gap-2">
       <span>My App</span>
+
+      <button mat-button (click)="toggleLanguage()" class="uppercase">{{ lang }}</button>
     </nav>
   </mat-toolbar>
 </header>

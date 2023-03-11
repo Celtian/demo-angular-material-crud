@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { DeletePostDialogComponent } from './components/delete-post-dialog/delete-post-dialog.component';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { PostListRoutingModule } from './post-list-routing.module';
@@ -33,6 +34,7 @@ import { PostListRoutingModule } from './post-list-routing.module';
     MatMenuModule,
     FormsModule,
     PortalModule,
+    TranslateModule,
   ],
 })
 export class PostListModule {}

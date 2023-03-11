@@ -26,6 +26,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
   public dataSource = new DataSource<PostDto>(DEFAULT_POST);
+  public readonly ROUTES = ROUTES;
 
   constructor(
     private apiService: ApiService,

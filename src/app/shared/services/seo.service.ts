@@ -9,7 +9,7 @@ import { SeoDto } from '../dto/seo.dto';
   providedIn: 'root',
 })
 export class SeoService {
-  private readonly siteName = 'demo.celtian.eu';
+  private readonly siteName = 'demo-angular-material-crud';
   private seoSubj = new Subject<SeoDto>();
 
   constructor(@Inject(DOCUMENT) private doc: any, private meta: Meta) {
@@ -54,7 +54,7 @@ export class SeoService {
       this.doc.head.appendChild(linkEl);
     }
     // const href = `${environment.domain}${url}`;
-    const href = `https://www.demo.celtian.eu${url}`;
+    const href = `https://celtian.github.io/demo-angular-material-crud${url}`;
     linkEl.setAttribute('href', href);
     this.meta.updateTag({ property: 'og:url', content: href });
   }

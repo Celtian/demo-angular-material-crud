@@ -25,6 +25,7 @@ import { DeletePostDialogComponent } from '../../components/delete-post-dialog/d
 export class PostListComponent implements OnInit, OnDestroy {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
+  public readonly ROUTES = ROUTES;
   public readonly displayedColumns: string[] = ['id', 'title', 'actions'];
   public readonly pageSizeOptions = [5, 10, 25, 100];
   public data: PostDto[] = [];

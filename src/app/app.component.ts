@@ -29,4 +29,8 @@ export class AppComponent implements OnInit {
     this.breadcrumbsPortal$ = this.breadcrumbsPortalService.portal$;
     this.language.language$.pipe(untilDestroyed(this)).subscribe((language) => (this.lang = language));
   }
+
+  public toggleLanguage() {
+    this.language.setLang(this.lang === 'en' ? 'cs' : 'en');
+  }
 }

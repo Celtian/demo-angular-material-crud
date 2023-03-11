@@ -1,15 +1,22 @@
 <mat-form-field class="w-full">
   <mat-label>Filter</mat-label>
   <input matInput (input)="onQueryChange($event)" placeholder="Type something here" [(ngModel)]="query" />
-  <button *ngIf="query" matSuffix mat-icon-button aria-label="Clear" (click)="onQueryRemove()" matTooltip="Clear">
+  <button
+    *ngIf="query"
+    matSuffix
+    mat-icon-button
+    [attr.aria-label]="'UNI.clear' | translate"
+    (click)="onQueryRemove()"
+    matTooltip="Clear"
+  >
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
 
 <div class="flex items-end justify-end gap-2">
-  <button mat-button (click)="onClear()">Clear</button>
+  <button mat-button (click)="onClear()">{{ 'UNI.clear' | translate }}</button>
 
-  <a mat-button [routerLink]="['/create' | localize]">Create</a>
+  <a mat-button [routerLink]="['/' + ROUTES.POSTS.CREATE | localize]">{{ 'UNI.create' | translate }}</a>
 </div>
 
 <table
@@ -55,13 +62,13 @@
           <mat-icon>info</mat-icon>
           <span>Detail</span>
         </a>
-        <a mat-menu-item [routerLink]="['/' + row.id + '/edit' | localize]">
+        <a mat-menu-item [routerLink]="['/' + row.id + '/' + ROUTES.POSTS.EDIT | localize]">
           <mat-icon>edit</mat-icon>
-          <span>Edit</span>
+          <span>{{ 'UNI.edit' | translate }}</span>
         </a>
         <button mat-menu-item (click)="onDelete(row)">
           <mat-icon>delete</mat-icon>
-          <span>Delete</span>
+          <span>{{ 'UNI.delete' | translate }}</span>
         </button>
       </mat-menu>
     </td>

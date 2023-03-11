@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { PostCreateComponent } from './pages/post-create/post-create.component';
 import { PostCreateRoutingModule } from './post-create-routing.module';
 
@@ -22,6 +23,7 @@ import { PostCreateRoutingModule } from './post-create-routing.module';
     MatButtonModule,
     MatTooltipModule,
     PortalModule,
+    TranslateModule,
   ],
 })
 export class PostCreateModule {}
