@@ -65,6 +65,7 @@
     "clear-filters": "Vymazat filtry",
     "create": "Vytvořit",
     "delete": "Smazat",
+    "detail": "Detail",
     "edit": "Upravit",
     "no": "Ne",
     "reset": "Resetovat",
@@ -105,5 +106,21 @@
   },
   "not-found": {
     "content": "Stránka nebyla nalezena"
+  },
+  "table": {
+    "posts": {
+      "body": {
+        "title": "Obsah"
+      },
+      "id": {
+        "title": "ID"
+      },
+      "title": {
+        "title": "Název"
+      },
+      "user-id": {
+        "title": "User"
+      }
+    }
   }
 }

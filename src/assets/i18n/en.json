@@ -65,6 +65,7 @@
     "clear-filters": "Clear filters",
     "create": "Create",
     "delete": "Delete",
+    "detail": "Detail",
     "edit": "Edit",
     "no": "No",
     "reset": "Reset",
@@ -105,5 +106,21 @@
   },
   "not-found": {
     "content": "Page was not found"
+  },
+  "table": {
+    "posts": {
+      "body": {
+        "title": "Body"
+      },
+      "id": {
+        "title": "ID"
+      },
+      "title": {
+        "title": "Title"
+      },
+      "user-id": {
+        "title": "User"
+      }
+    }
   }
 }

@@ -35,24 +35,26 @@
   (matSortChange)="onSortChange($event)"
 >
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>ID</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>{{ 'table.posts.id.title' | translate }}</th>
     <td mat-cell *matCellDef="let row">
       {{ '#' + row.id }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="userId">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>User</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+      {{ 'table.posts.user-id.title' | translate }}
+    </th>
     <td mat-cell *matCellDef="let row">{{ '#' + row.userId }}</td>
   </ng-container>
 
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Title</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>{{ 'table.posts.title.title' | translate }}</th>
     <td mat-cell *matCellDef="let row" class="font-bold">{{ row.title }}</td>
   </ng-container>
 
   <ng-container matColumnDef="body">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Body</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>{{ 'table.posts.body.title' | translate }}</th>
     <td mat-cell *matCellDef="let row">{{ row.body }}</td>
   </ng-container>
 
@@ -65,7 +67,7 @@
       <mat-menu #menu="matMenu">
         <a mat-menu-item [routerLink]="['/' | localize, row.id]">
           <mat-icon>info</mat-icon>
-          <span>Detail</span>
+          <span>{{ 'UNI.detail' | translate }}</span>
         </a>
         <a mat-menu-item [routerLink]="['/' + row.id + '/' + ROUTES.POSTS.EDIT | localize]">
           <mat-icon>edit</mat-icon>
