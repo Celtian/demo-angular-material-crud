@@ -27,56 +27,7 @@
         {{ 'post-detail.about-author' | translate }}
       </p>
 
-      <table class="w-full" [class.blur-sm]="dataSource.state === 'loading'">
-        <colgroup>
-          <col width="150" />
-          <col />
-        </colgroup>
-        <tbody *ngIf="dataSource.data.user">
-          <tr>
-            <td class="font-bold">{{ 'post-detail.user.id' | translate }}</td>
-            <td>{{ '#' + dataSource.data.user.id }}</td>
-          </tr>
-          <tr>
-            <td class="font-bold">{{ 'post-detail.user.name' | translate }}</td>
-            <td>{{ dataSource.data.user.name }}</td>
-          </tr>
-          <tr>
-            <td class="font-bold">{{ 'post-detail.user.username' | translate }}</td>
-            <td>{{ dataSource.data.user.username }}</td>
-          </tr>
-          <tr>
-            <td class="font-bold">{{ 'post-detail.user.email' | translate }}</td>
-            <td>{{ dataSource.data.user.email }}</td>
-          </tr>
-          <tr>
-            <td class="font-bold">{{ 'post-detail.user.phone' | translate }}</td>
-            <td>{{ dataSource.data.user.phone }}</td>
-          </tr>
-          <tr>
-            <td class="font-bold">{{ 'post-detail.user.website' | translate }}</td>
-            <td>{{ dataSource.data.user.website }}</td>
-          </tr>
-          <tr *ngIf="dataSource.data.user.address" class="align-baseline">
-            <td class="font-bold">{{ 'post-detail.user.address' | translate }}</td>
-            <td>
-              <div>{{ dataSource.data.user.address.street }}</div>
-              <div>{{ dataSource.data.user.address.suite }}</div>
-              <div>{{ dataSource.data.user.address.city }}</div>
-              <div>{{ dataSource.data.user.address.zipcode }}</div>
-              <div>{{ dataSource.data.user.address.geo.lat }}, {{ dataSource.data.user.address.geo.lng }}</div>
-            </td>
-          </tr>
-          <tr *ngIf="dataSource.data.user.company" class="align-baseline">
-            <td class="font-bold">{{ 'post-detail.user.company' | translate }}</td>
-            <td>
-              <div>{{ dataSource.data.user.company.name }}</div>
-              <div>{{ dataSource.data.user.company.catchPhrase }}</div>
-              <div>{{ dataSource.data.user.company.bs }}</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <app-user-info [user]="dataSource.data.user" [isLoading]="dataSource.state === 'loading'"></app-user-info>
     </mat-card-content>
   </mat-card>
 </ng-container>

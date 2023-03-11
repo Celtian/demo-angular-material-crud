@@ -13,9 +13,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmDialogModule } from 'src/app/confirm-dialog/confirm-dialog.module';
+import { UserInfoComponent } from 'src/app/user-info/user-info.component';
+import { PostListDetailComponent } from './components/post-list-detail/post-list-detail.component';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { PostListRoutingModule } from './post-list-routing.module';
-import { PostListDetailComponent } from './components/post-list-detail/post-list-detail.component';
 
 @NgModule({
   declarations: [PostListComponent, PostListDetailComponent],
@@ -35,6 +36,7 @@ import { PostListDetailComponent } from './components/post-list-detail/post-list
     PortalModule,
     TranslateModule,
     ConfirmDialogModule,
+    UserInfoComponent,
   ],
 })
 export class PostListModule {}
