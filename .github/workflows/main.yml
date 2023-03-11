@@ -1,0 +1,51 @@
+name: Build & Publish
+
+# on:
+#   push:
+#     tags:
+#       - 'v*'
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  install-and-build:
+    name: Install, Build & Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-yarn-${{ env.cache-name }}-
+            ${{ runner.OS }}-yarn-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build demo app
+        run: yarn build --base-href https://celtian.github.io/demo-angular-material-crud/
+
+      - name: Deploy Github Pages
+        uses: peaceiris/actions-gh-pages@v2.5.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./dist/demo-angular-material-crud
