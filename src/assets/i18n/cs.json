@@ -129,7 +129,7 @@
     },
     "update": {
       "failed": "Ukládání se nezdařilo",
-      "success": "úspěšně uloženo"
+      "success": "Úspěšně uloženo"
     }
   },
   "table": {
