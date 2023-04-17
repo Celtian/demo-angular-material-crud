@@ -69,16 +69,10 @@ MIT
 @gilsdav/ngx-translate-router
 MIT
 
-@gilsdav/ngx-translate-router-http-loader
-MIT
-
 @ngneat/until-destroy
 MIT
 
 @ngx-translate/core
-MIT
-
-@ngx-translate/http-loader
 MIT
 
 lodash-es
@@ -136,6 +130,9 @@ ngx-app-version
 MIT
 
 ngx-fixed-footer
+MIT
+
+ngx-translate-version
 MIT
 
 rxjs
