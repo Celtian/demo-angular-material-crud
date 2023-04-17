@@ -3,17 +3,17 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TitleStrategy } from '@angular/router';
 import { NgxAppVersionModule } from 'ngx-app-version';
 import { NgxFixedFooterModule } from 'ngx-fixed-footer';
+import { NgxTranslateVersionModule } from 'ngx-translate-version';
 import { VERSION } from 'src/environments/version';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { I18nModule } from './i18n';
 import { CustomErrorHandlerService } from './shared/services/custom-error-handler.service';
 import { CustomTitleStrategyService } from './shared/services/custom-title-strategy.service';
 import { MatPaginationIntlService } from './shared/services/mat-paginator-intl.service';
@@ -29,9 +29,8 @@ import { MatPaginationIntlService } from './shared/services/mat-paginator-intl.s
     MatButtonModule,
     MatSnackBarModule,
     PortalModule,
-    I18nModule.forRoot({
+    NgxTranslateVersionModule.forRoot(routes, {
       version: VERSION.version,
-      defaultLanguage: 'en',
     }),
     NgxFixedFooterModule.forRoot({
       containerSelector: '.permanent-main',
