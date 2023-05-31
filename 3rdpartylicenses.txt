@@ -69,9 +69,6 @@ MIT
 @gilsdav/ngx-translate-router
 MIT
 
-@ngneat/until-destroy
-MIT
-
 @ngx-translate/core
 SEE LICENSE IN LICENSE
 
