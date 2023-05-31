@@ -1,21 +1,22 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  DestroyRef,
   Input,
   OnChanges,
   OnInit,
   SimpleChanges,
+  inject,
+  signal,
 } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
-import { debounceTime, Subject, switchMap } from 'rxjs';
+import { Subject, debounceTime, switchMap } from 'rxjs';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_USER } from 'src/app/shared/constants/user.constant';
 import { UserDto } from 'src/app/shared/dto/user.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
 
-@UntilDestroy()
 @Component({
   selector: 'app-post-list-detail',
   templateUrl: './post-list-detail.component.html',
@@ -23,29 +24,28 @@ import { ApiService } from 'src/app/shared/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostListDetailComponent implements OnChanges, OnInit {
-  @Input() public id!: number;
+  @Input({ required: true }) public id!: number;
 
-  public dataSource = new DataSource<UserDto>(DEFAULT_USER);
+  private destroyRef = inject(DestroyRef);
+  public dataSource = signal(new DataSource<UserDto>(DEFAULT_USER));
   private idSubj = new Subject<number>();
 
-  constructor(private apiService: ApiService, private translate: TranslateService, private cdr: ChangeDetectorRef) {}
+  constructor(private apiService: ApiService, private translate: TranslateService) {}
 
   public ngOnInit(): void {
     this.idSubj
       .pipe(
         debounceTime(500),
         switchMap((id) => this.apiService.user(id)),
-        untilDestroyed(this)
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
         next: (res) => {
-          this.dataSource.setData(res);
-          this.cdr.markForCheck();
+          this.dataSource.mutate((value) => value.setData(res));
         },
         error: () => {
           const error = this.translate.instant('ERROR.unexpected-exception');
-          this.dataSource.setError(error);
-          this.cdr.markForCheck();
+          this.dataSource.mutate((value) => value.setError(error));
         },
       });
 

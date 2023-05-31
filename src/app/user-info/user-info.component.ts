@@ -12,6 +12,6 @@ import { UserDto } from '../shared/dto/user.dto';
   imports: [CommonModule, TranslateModule],
 })
 export class UserInfoComponent {
-  @Input() public user!: UserDto;
-  @Input() public isLoading = false;
+  @Input({ required: true }) public user!: UserDto;
+  @Input({ required: true }) public isLoading = false;
 }

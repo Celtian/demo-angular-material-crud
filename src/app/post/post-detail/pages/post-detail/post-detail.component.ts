@@ -1,10 +1,19 @@
 import { CdkPortal } from '@angular/cdk/portal';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs';
 import {
@@ -20,7 +29,6 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { SeoService } from 'src/app/shared/services/seo.service';
 
-@UntilDestroy()
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
@@ -28,15 +36,16 @@ import { SeoService } from 'src/app/shared/services/seo.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostDetailComponent implements OnInit, OnDestroy {
+  private destroyRef = inject(DestroyRef);
+
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
-  public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST);
+  public dataSource = signal(new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST));
   public readonly ROUTES = ROUTES;
 
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
     private translate: TranslateService,
     private breadcrumbsPortalService: BreadcrumbsPortalService,
     private language: LanguageService,
@@ -75,7 +84,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
             })
           )
         ),
-        untilDestroyed(this)
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
 
@@ -84,27 +93,24 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         delay(500),
         tap((id) => {
           if (Number.isNaN(Number(id))) {
-            this.dataSource.setData(DEFAULT_EXPANDED_POST);
-            this.cdr.markForCheck();
+            this.dataSource.mutate((value) => value.setData(DEFAULT_EXPANDED_POST));
           }
         }),
         filter((id) => !Number.isNaN(Number(id))),
         switchMap((id) => this.apiService.detailExpanded(Number(id))),
-        untilDestroyed(this)
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
         next: (post) => {
-          this.dataSource.setData(post);
-          this.cdr.markForCheck();
+          this.dataSource.mutate((value) => value.setData(post));
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
-            this.dataSource.setData(DEFAULT_EXPANDED_POST);
+            this.dataSource.mutate((value) => value.setData(DEFAULT_EXPANDED_POST));
           } else {
             const error = this.translate.instant('ERROR.unexpected-exception');
-            this.dataSource.setError(error);
+            this.dataSource.mutate((value) => value.setError(error));
           }
-          this.cdr.markForCheck();
         },
       });
   }
@@ -115,7 +121,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       .pipe(
         first(),
         filter((res) => !!res),
-        switchMap(() => this.apiService.delete(this.dataSource.data.id))
+        switchMap(() => this.apiService.delete(this.dataSource().data.id))
       )
       .subscribe({
         next: () => {
