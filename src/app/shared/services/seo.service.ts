@@ -12,7 +12,7 @@ export class SeoService {
   private readonly siteName = 'CRUD demo';
   private seoSubj = new Subject<SeoDto>();
 
-  constructor(@Inject(DOCUMENT) private doc: any, private meta: Meta) {
+  constructor(@Inject(DOCUMENT) private doc: Document, private meta: Meta) {
     this.applySeo();
   }
 
