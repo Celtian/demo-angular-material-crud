@@ -12,7 +12,7 @@ on:
 
 jobs:
   install-and-build:
-    name: Install, Build & Deploy
+    name: 🛠️ Install, Build & Deploy
     runs-on: ubuntu-latest
 
     steps:

@@ -10,18 +10,21 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, debounceTime, switchMap } from 'rxjs';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_USER } from 'src/app/shared/constants/user.constant';
 import { UserDto } from 'src/app/shared/dto/user.dto';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
+  standalone: true,
   selector: 'app-post-list-detail',
   templateUrl: './post-list-detail.component.html',
   styleUrls: ['./post-list-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [UserInfoComponent, TranslateModule],
 })
 export class PostListDetailComponent implements OnChanges, OnInit {
   @Input({ required: true }) public id!: number;
@@ -30,14 +33,17 @@ export class PostListDetailComponent implements OnChanges, OnInit {
   public dataSource = signal(new DataSource<UserDto>(DEFAULT_USER));
   private idSubj = new Subject<number>();
 
-  constructor(private apiService: ApiService, private translate: TranslateService) {}
+  constructor(
+    private apiService: ApiService,
+    private translate: TranslateService,
+  ) {}
 
   public ngOnInit(): void {
     this.idSubj
       .pipe(
         debounceTime(500),
         switchMap((id) => this.apiService.user(id)),
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         next: (res) => {
