@@ -160,7 +160,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   public onPageChange(event: PageEvent): void {
-    console.log(event);
     this.router.navigate([], {
       queryParams: {
         pageIndex: event.pageIndex > 0 ? event.pageIndex : null,
