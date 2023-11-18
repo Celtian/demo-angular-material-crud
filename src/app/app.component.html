@@ -8,16 +8,16 @@
 </header>
 
 <main class="flex-1 permanent-main">
-  <ng-container *ngIf="breadcrumbsPortal$ | async as portal">
+  @if (breadcrumbsPortal$ | async; as portal) {
     <ng-template [cdkPortalOutlet]="portal"></ng-template>
-  </ng-container>
+  }
   <router-outlet></router-outlet>
 </main>
 
 <footer ngxFixedFooter class="fixed bottom-0 w-full text-center">
   <mat-toolbar color="primary">
     <div class="container text-sm">
-      {{ 'footer.content' | translate : { endYear } }}
+      {{ 'footer.content' | translate: { endYear } }}
     </div>
   </mat-toolbar>
 </footer>

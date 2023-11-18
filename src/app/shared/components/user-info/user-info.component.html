@@ -3,48 +3,54 @@
     <col width="150" />
     <col />
   </colgroup>
-  <tbody *ngIf="user">
-    <tr>
-      <td class="font-bold">{{ 'post-detail.user.id' | translate }}</td>
-      <td>{{ '#' + user.id }}</td>
-    </tr>
-    <tr>
-      <td class="font-bold">{{ 'post-detail.user.name' | translate }}</td>
-      <td>{{ user.name }}</td>
-    </tr>
-    <tr>
-      <td class="font-bold">{{ 'post-detail.user.username' | translate }}</td>
-      <td>{{ user.username }}</td>
-    </tr>
-    <tr>
-      <td class="font-bold">{{ 'post-detail.user.email' | translate }}</td>
-      <td>{{ user.email }}</td>
-    </tr>
-    <tr>
-      <td class="font-bold">{{ 'post-detail.user.phone' | translate }}</td>
-      <td>{{ user.phone }}</td>
-    </tr>
-    <tr>
-      <td class="font-bold">{{ 'post-detail.user.website' | translate }}</td>
-      <td>{{ user.website }}</td>
-    </tr>
-    <tr *ngIf="user.address" class="align-baseline">
-      <td class="font-bold">{{ 'post-detail.user.address' | translate }}</td>
-      <td>
-        <div>{{ user.address.street }}</div>
-        <div>{{ user.address.suite }}</div>
-        <div>{{ user.address.city }}</div>
-        <div>{{ user.address.zipcode }}</div>
-        <div>{{ user.address.geo.lat }}, {{ user.address.geo.lng }}</div>
-      </td>
-    </tr>
-    <tr *ngIf="user.company" class="align-baseline">
-      <td class="font-bold">{{ 'post-detail.user.company' | translate }}</td>
-      <td>
-        <div>{{ user.company.name }}</div>
-        <div>{{ user.company.catchPhrase }}</div>
-        <div>{{ user.company.bs }}</div>
-      </td>
-    </tr>
-  </tbody>
+  @if (user) {
+    <tbody>
+      <tr>
+        <td class="font-bold">{{ 'post-detail.user.id' | translate }}</td>
+        <td>{{ '#' + user.id }}</td>
+      </tr>
+      <tr>
+        <td class="font-bold">{{ 'post-detail.user.name' | translate }}</td>
+        <td>{{ user.name }}</td>
+      </tr>
+      <tr>
+        <td class="font-bold">{{ 'post-detail.user.username' | translate }}</td>
+        <td>{{ user.username }}</td>
+      </tr>
+      <tr>
+        <td class="font-bold">{{ 'post-detail.user.email' | translate }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <td class="font-bold">{{ 'post-detail.user.phone' | translate }}</td>
+        <td>{{ user.phone }}</td>
+      </tr>
+      <tr>
+        <td class="font-bold">{{ 'post-detail.user.website' | translate }}</td>
+        <td>{{ user.website }}</td>
+      </tr>
+      @if (user.address) {
+        <tr class="align-baseline">
+          <td class="font-bold">{{ 'post-detail.user.address' | translate }}</td>
+          <td>
+            <div>{{ user.address.street }}</div>
+            <div>{{ user.address.suite }}</div>
+            <div>{{ user.address.city }}</div>
+            <div>{{ user.address.zipcode }}</div>
+            <div>{{ user.address.geo.lat }}, {{ user.address.geo.lng }}</div>
+          </td>
+        </tr>
+      }
+      @if (user.company) {
+        <tr class="align-baseline">
+          <td class="font-bold">{{ 'post-detail.user.company' | translate }}</td>
+          <td>
+            <div>{{ user.company.name }}</div>
+            <div>{{ user.company.catchPhrase }}</div>
+            <div>{{ user.company.bs }}</div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  }
 </table>

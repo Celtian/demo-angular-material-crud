@@ -6,16 +6,17 @@
     [placeholder]="'input.search.placeholder' | translate"
     [(ngModel)]="query"
   />
-  <button
-    *ngIf="query"
-    matSuffix
-    mat-icon-button
-    [attr.aria-label]="'UNI.clear' | translate"
-    (click)="onQueryRemove()"
-    [matTooltip]="'UNI.clear' | translate"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+  @if (query) {
+    <button
+      matSuffix
+      mat-icon-button
+      [attr.aria-label]="'UNI.clear' | translate"
+      (click)="onQueryRemove()"
+      [matTooltip]="'UNI.clear' | translate"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  }
 </mat-form-field>
 
 <div class="flex items-end justify-end gap-2">
@@ -94,8 +95,11 @@
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button aria-label="expand row" (click)="onExpand($event, element)">
-        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
-        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+        @if (expandedElement === element) {
+          <mat-icon>keyboard_arrow_up</mat-icon>
+        } @else {
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        }
       </button>
     </td>
   </ng-container>
@@ -103,34 +107,36 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumnsExpanded.length">
       <div [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
-        <div *ngIf="expandedElement === element" [class.my-2]="element === expandedElement">
-          <app-post-list-detail [id]="element.userId">
-            <table>
-              <colgroup>
-                <col width="120" />
-                <col />
-              </colgroup>
-              <tbody>
-                <tr class="align-baseline">
-                  <td class="font-bold">{{ 'table.posts.id.title' | translate }}</td>
-                  <td>{{ '#' + element.id }}</td>
-                </tr>
-                <tr class="align-baseline">
-                  <td class="font-bold">{{ 'table.posts.user-id.title' | translate }}</td>
-                  <td>{{ '#' + element.userId }}</td>
-                </tr>
-                <tr class="align-baseline">
-                  <td class="font-bold">{{ 'table.posts.title.title' | translate }}</td>
-                  <td>{{ element.title }}</td>
-                </tr>
-                <tr class="align-baseline">
-                  <td class="font-bold">{{ 'table.posts.body.title' | translate }}</td>
-                  <td>{{ element.body }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </app-post-list-detail>
-        </div>
+        @if (expandedElement === element) {
+          <div [class.my-2]="element === expandedElement">
+            <app-post-list-detail [id]="element.userId">
+              <table>
+                <colgroup>
+                  <col width="120" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  <tr class="align-baseline">
+                    <td class="font-bold">{{ 'table.posts.id.title' | translate }}</td>
+                    <td>{{ '#' + element.id }}</td>
+                  </tr>
+                  <tr class="align-baseline">
+                    <td class="font-bold">{{ 'table.posts.user-id.title' | translate }}</td>
+                    <td>{{ '#' + element.userId }}</td>
+                  </tr>
+                  <tr class="align-baseline">
+                    <td class="font-bold">{{ 'table.posts.title.title' | translate }}</td>
+                    <td>{{ element.title }}</td>
+                  </tr>
+                  <tr class="align-baseline">
+                    <td class="font-bold">{{ 'table.posts.body.title' | translate }}</td>
+                    <td>{{ element.body }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </app-post-list-detail>
+          </div>
+        }
       </div>
     </td>
   </ng-container>

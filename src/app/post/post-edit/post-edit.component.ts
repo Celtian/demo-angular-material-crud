@@ -1,5 +1,4 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LocalizeRouterModule, LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable, delay, filter, first, map, switchMap, tap } from 'rxjs';
@@ -30,10 +29,9 @@ import { SeoService } from 'src/app/shared/services/seo.service';
   standalone: true,
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.scss'],
+  styleUrl: './post-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
     PortalModule,
     MatIconModule,
     MatButtonModule,
@@ -43,7 +41,7 @@ import { SeoService } from 'src/app/shared/services/seo.service';
     ReactiveFormsModule,
     TranslateModule,
     ConfirmDialogComponent,
-    RouterModule,
+    RouterLink,
     LocalizeRouterModule,
   ],
 })

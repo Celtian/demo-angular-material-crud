@@ -1,5 +1,5 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
-import { CommonModule } from '@angular/common';
+import { UpperCasePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LocalizeRouterModule, LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { delay, filter, first, map, switchMap, tap } from 'rxjs';
@@ -27,10 +27,10 @@ import { SeoService } from 'src/app/shared/services/seo.service';
   standalone: true,
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.scss'],
+  styleUrl: './post-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
+    UpperCasePipe,
     MatCardModule,
     MatIconModule,
     MatButtonModule,
@@ -38,7 +38,7 @@ import { SeoService } from 'src/app/shared/services/seo.service';
     TranslateModule,
     ConfirmDialogComponent,
     UserInfoComponent,
-    RouterModule,
+    RouterLink,
     LocalizeRouterModule,
   ],
 })

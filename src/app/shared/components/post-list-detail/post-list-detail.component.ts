@@ -21,7 +21,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
   standalone: true,
   selector: 'app-post-list-detail',
   templateUrl: './post-list-detail.component.html',
-  styleUrls: ['./post-list-detail.component.scss'],
+  styleUrl: './post-list-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [UserInfoComponent, TranslateModule],
 })
