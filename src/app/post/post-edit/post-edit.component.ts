@@ -1,16 +1,7 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -61,7 +52,7 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
 
   private destroyRef = inject(DestroyRef);
 
-  public dataSource = signal(new DataSource<PostDto>(DEFAULT_POST));
+  public dataSource = new DataSource<PostDto>(DEFAULT_POST);
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
 
   public form = this.fb.nonNullable.group({
@@ -120,7 +111,7 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
         delay(500),
         tap((id) => {
           if (Number.isNaN(Number(id))) {
-            this.dataSource.mutate((value) => value.setData(DEFAULT_POST));
+            this.dataSource.setData(DEFAULT_POST);
           }
         }),
         filter((id) => !Number.isNaN(Number(id))),
@@ -129,15 +120,15 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
       )
       .subscribe({
         next: (post) => {
-          this.dataSource.mutate((value) => value.setData(post));
+          this.dataSource.setData(post);
           this.form.patchValue(post);
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
-            this.dataSource.mutate((value) => value.setData(DEFAULT_POST));
+            this.dataSource.setData(DEFAULT_POST);
           } else {
             const error = this.translate.instant('ERROR.unexpected-exception');
-            this.dataSource.mutate((value) => value.setError(error));
+            this.dataSource.setError(error);
           }
         },
       });
@@ -149,11 +140,11 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
 
   public onSubmit(): void {
     this.apiService
-      .patch(this.dataSource().data.id, this.form.value)
+      .patch(this.dataSource.data().id, this.form.value)
       .pipe(first())
       .subscribe({
         next: (post) => {
-          this.dataSource.mutate((value) => value.setData(post));
+          this.dataSource.setData(post);
           this.form.reset(post);
           this.snackBar.open(this.translate.instant('response.update.success'), this.translate.instant('UNI.close'));
         },
@@ -165,7 +156,7 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
 
   public onReset(event: Event): void {
     event.preventDefault();
-    this.form.reset(this.dataSource().data);
+    this.form.reset(this.dataSource.data());
   }
 
   public onDelete(): void {
@@ -174,7 +165,7 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
       .pipe(
         first(),
         filter((res) => !!res),
-        switchMap(() => this.apiService.delete(this.dataSource().data.id)),
+        switchMap(() => this.apiService.delete(this.dataSource.data().id)),
       )
       .subscribe({
         next: () => {

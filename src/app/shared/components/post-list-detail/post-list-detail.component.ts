@@ -7,7 +7,6 @@ import {
   OnInit,
   SimpleChanges,
   inject,
-  signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -30,7 +29,7 @@ export class PostListDetailComponent implements OnChanges, OnInit {
   @Input({ required: true }) public id!: number;
 
   private destroyRef = inject(DestroyRef);
-  public dataSource = signal(new DataSource<UserDto>(DEFAULT_USER));
+  public dataSource = new DataSource<UserDto>(DEFAULT_USER);
   private idSubj = new Subject<number>();
 
   constructor(
@@ -47,11 +46,11 @@ export class PostListDetailComponent implements OnChanges, OnInit {
       )
       .subscribe({
         next: (res) => {
-          this.dataSource.mutate((value) => value.setData(res));
+          this.dataSource.setData(res);
         },
         error: () => {
           const error = this.translate.instant('ERROR.unexpected-exception');
-          this.dataSource.mutate((value) => value.setError(error));
+          this.dataSource.setError(error);
         },
       });
 

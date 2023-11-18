@@ -22,7 +22,7 @@ jobs:
       - name: Setup node version
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Cache node modules
         id: cache
@@ -50,11 +50,11 @@ jobs:
         run: yarn build --base-href https://celtian.github.io/demo-angular-material-crud/
 
       - name: Copy index.html to 404.html
-        run: cp ./dist/demo-angular-material-crud/index.html ./dist/demo-angular-material-crud/404.html
+        run: cp ./dist/demo-angular-material-crud/browser/index.html ./dist/demo-angular-material-crud/browser/404.html
 
       - name: Deploy Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_branch: gh-pages
-          publish_dir: ./dist/demo-angular-material-crud
+          publish_dir: ./dist/demo-angular-material-crud/browser

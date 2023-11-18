@@ -36,11 +36,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/demo-angular-material-crud",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -75,9 +75,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -89,10 +87,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "demo-angular-material-crud:build:production"
+              "buildTarget": "demo-angular-material-crud:build:production"
             },
             "development": {
-              "browserTarget": "demo-angular-material-crud:build:development"
+              "buildTarget": "demo-angular-material-crud:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -100,7 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo-angular-material-crud:build"
+            "buildTarget": "demo-angular-material-crud:build"
           }
         },
         "test": {

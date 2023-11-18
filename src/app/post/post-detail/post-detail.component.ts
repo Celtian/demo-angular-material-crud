@@ -1,16 +1,7 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -56,7 +47,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
-  public dataSource = signal(new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST));
+  public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST);
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
 
   constructor(
@@ -109,7 +100,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         delay(500),
         tap((id) => {
           if (Number.isNaN(Number(id))) {
-            this.dataSource.mutate((value) => value.setData(DEFAULT_EXPANDED_POST));
+            this.dataSource.setData(DEFAULT_EXPANDED_POST);
           }
         }),
         filter((id) => !Number.isNaN(Number(id))),
@@ -118,14 +109,14 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (post) => {
-          this.dataSource.mutate((value) => value.setData(post));
+          this.dataSource.setData(post);
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
-            this.dataSource.mutate((value) => value.setData(DEFAULT_EXPANDED_POST));
+            this.dataSource.setData(DEFAULT_EXPANDED_POST);
           } else {
             const error = this.translate.instant('ERROR.unexpected-exception');
-            this.dataSource.mutate((value) => value.setError(error));
+            this.dataSource.setError(error);
           }
         },
       });
@@ -137,7 +128,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       .pipe(
         first(),
         filter((res) => !!res),
-        switchMap(() => this.apiService.delete(this.dataSource().data.id)),
+        switchMap(() => this.apiService.delete(this.dataSource.data().id)),
       )
       .subscribe({
         next: () => {

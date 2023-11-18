@@ -2,8 +2,8 @@
 
 <ng-content></ng-content>
 
-<div class="my-2 font-bold" [class.blur-sm]="dataSource().state === 'loading'">
+<div class="my-2 font-bold" [class.blur-sm]="dataSource.state() === 'loading'">
   {{ 'post-detail.about-author' | translate }}
 </div>
 
-<app-user-info [user]="dataSource().data" [isLoading]="dataSource().state === 'loading'"></app-user-info>
+<app-user-info [user]="dataSource.data()" [isLoading]="dataSource.state() === 'loading'"></app-user-info>
