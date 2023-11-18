@@ -8,9 +8,74 @@
       "edit": "Upravit"
     }
   },
+  "custom-confirm-dialog": {
+    "default": {
+      "content": "Opravdu chcete potvrdit operaci?",
+      "title": "Potvrzení operace"
+    },
+    "delete-post": {
+      "content": "Opravdu chcete smazat příspěvek?",
+      "title": "Mazání příspěvku"
+    },
+    "unsaved-work": {
+      "content": "Opravdu chcete opustit tuto stránku?",
+      "title": "Neuložená práce"
+    }
+  },
   "ERROR": {
     "post-was-not-found": "Příspěvek nebyl nalezen",
     "unexpected-exception": "Neočekávaná chyba"
+  },
+  "footer": {
+    "content": "Všechna práva vyhrazena © {{ endYear }}"
+  },
+  "form": {
+    "post": {
+      "body": {
+        "label": "Obsah",
+        "placeholder": "Napiště něco zde…"
+      },
+      "title": {
+        "label": "Název"
+      }
+    }
+  },
+  "input": {
+    "search": {
+      "label": "Vyhledávání",
+      "placeholder": "Začněte zde psát…"
+    }
+  },
+  "not-found": {
+    "content": "Stránka nebyla nalezena"
+  },
+  "post-detail": {
+    "about-author": "O autorovi",
+    "about-post": "Obsah příspěvku",
+    "user": {
+      "address": "Adresa",
+      "company": "Společnost",
+      "email": "Email",
+      "id": "ID",
+      "name": "Jméno",
+      "phone": "Telefon",
+      "username": "Uživatelské jméno",
+      "website": "Web"
+    }
+  },
+  "response": {
+    "create": {
+      "failed": "Vytváření se nezdařilo",
+      "success": "Úspěšně vytvořeno"
+    },
+    "delete": {
+      "failed": "Mazání se nezdařilo",
+      "success": "Úspěšně smazáno"
+    },
+    "update": {
+      "failed": "Ukládání se nezdařilo",
+      "success": "Úspěšně uloženo"
+    }
   },
   "ROUTES": {
     "app": {
@@ -49,6 +114,22 @@
       }
     }
   },
+  "table": {
+    "posts": {
+      "body": {
+        "title": "Obsah"
+      },
+      "id": {
+        "title": "ID"
+      },
+      "title": {
+        "title": "Název"
+      },
+      "user-id": {
+        "title": "Uživatel"
+      }
+    }
+  },
   "TITLES": {
     "app": {
       "not-found": "Stránka nebyla nalezena",
@@ -72,94 +153,5 @@
     "reset": "Resetovat",
     "submit": "Potvrdit",
     "yes": "Ano"
-  },
-  "custom-confirm-dialog": {
-    "default": {
-      "content": "Opravdu chcete potvrdit operaci?",
-      "title": "Potvrzení operace"
-    },
-    "delete-post": {
-      "content": "Opravdu chcete smazat příspěvek?",
-      "title": "Mazání příspěvku"
-    },
-    "unsaved-work": {
-      "content": "Opravdu chcete opustit tuto stránku?",
-      "title": "Neuložená práce"
-    }
-  },
-  "footer": {
-    "content": "Všechna práva vyhrazena © {{ endYear }}"
-  },
-  "form": {
-    "post": {
-      "body": {
-        "label": "Obsah",
-        "placeholder": "Napiště něco zde…"
-      },
-      "title": {
-        "label": "Název"
-      }
-    }
-  },
-  "input": {
-    "search": {
-      "label": "Vyhledávání",
-      "placeholder": "Začněte zde psát…"
-    }
-  },
-  "mat-paginator": {
-    "first-page": "První stránka",
-    "items-per-page": "Položek na stránku",
-    "last-page": "Poslední stránka",
-    "next-page": "Další stránka",
-    "of": "z",
-    "previous-page": "Předchozí stránka"
-  },
-  "not-found": {
-    "content": "Stránka nebyla nalezena"
-  },
-  "post-detail": {
-    "about-author": "O autorovi",
-    "about-post": "Obsah příspěvku",
-    "user": {
-      "address": "Adresa",
-      "company": "Společnost",
-      "email": "Email",
-      "id": "ID",
-      "name": "Jméno",
-      "phone": "Telefon",
-      "username": "Uživatelské jméno",
-      "website": "Web"
-    }
-  },
-  "response": {
-    "create": {
-      "failed": "Vytváření se nezdařilo",
-      "success": "Úspěšně vytvořeno"
-    },
-    "delete": {
-      "failed": "Mazání se nezdařilo",
-      "success": "Úspěšně smazáno"
-    },
-    "update": {
-      "failed": "Ukládání se nezdařilo",
-      "success": "Úspěšně uloženo"
-    }
-  },
-  "table": {
-    "posts": {
-      "body": {
-        "title": "Obsah"
-      },
-      "id": {
-        "title": "ID"
-      },
-      "title": {
-        "title": "Název"
-      },
-      "user-id": {
-        "title": "Uživatel"
-      }
-    }
   }
 }
