@@ -1,5 +1,5 @@
 {
-  "BREADCRUMBS": {
+  "breadcrumbs": {
     "app": {
       "posts": "Příspěvky"
     },
@@ -22,7 +22,7 @@
       "title": "Neuložená práce"
     }
   },
-  "ERROR": {
+  "error": {
     "post-was-not-found": "Příspěvek nebyl nalezen",
     "unexpected-exception": "Neočekávaná chyba"
   },
@@ -77,7 +77,7 @@
       "success": "Úspěšně uloženo"
     }
   },
-  "ROUTES": {
+  "routes": {
     "app": {
       "not-found": "nenalezeno",
       "posts": "prispevky"
@@ -130,7 +130,7 @@
       }
     }
   },
-  "TITLES": {
+  "titles": {
     "app": {
       "not-found": "Stránka nebyla nalezena",
       "posts": "Seznam příspěvků"
@@ -141,7 +141,7 @@
       "edit": "Upravit příspěvek"
     }
   },
-  "UNI": {
+  "uni": {
     "clear": "Vymazat",
     "clear-filters": "Vymazat filtry",
     "close": "Zavřít",

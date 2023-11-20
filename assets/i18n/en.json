@@ -1,5 +1,5 @@
 {
-  "BREADCRUMBS": {
+  "breadcrumbs": {
     "app": {
       "posts": "Posts"
     },
@@ -22,7 +22,7 @@
       "title": "Unsaved work"
     }
   },
-  "ERROR": {
+  "error": {
     "post-was-not-found": "Post was not found",
     "unexpected-exception": "Unexpected error"
   },
@@ -77,7 +77,7 @@
       "success": "Succesfully updated"
     }
   },
-  "ROUTES": {
+  "routes": {
     "app": {
       "not-found": "not-found",
       "posts": "posts"
@@ -130,7 +130,7 @@
       }
     }
   },
-  "TITLES": {
+  "titles": {
     "app": {
       "not-found": "Page was not found",
       "posts": "List of posts"
@@ -141,7 +141,7 @@
       "edit": "Edit post"
     }
   },
-  "UNI": {
+  "uni": {
     "clear": "Clear",
     "clear-filters": "Clear filters",
     "close": "Close",
