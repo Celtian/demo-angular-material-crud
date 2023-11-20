@@ -125,7 +125,7 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
             this.dataSource.setData(DEFAULT_POST);
           } else {
-            const error = this.translate.instant('ERROR.unexpected-exception');
+            const error = this.translate.instant('error.unexpected-exception');
             this.dataSource.setError(error);
           }
         },
@@ -144,10 +144,10 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
         next: (post) => {
           this.dataSource.setData(post);
           this.form.reset(post);
-          this.snackBar.open(this.translate.instant('response.update.success'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.update.success'), this.translate.instant('uni.close'));
         },
         error: () => {
-          this.snackBar.open(this.translate.instant('response.update.failed'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.update.failed'), this.translate.instant('uni.close'));
         },
       });
   }
@@ -167,12 +167,12 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
       )
       .subscribe({
         next: () => {
-          this.snackBar.open(this.translate.instant('response.delete.success'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.delete.success'), this.translate.instant('uni.close'));
           const translatedRoute = this.lr.translateRoute(`/`);
           this.router.navigate([translatedRoute]);
         },
         error: () => {
-          this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('uni.close'));
         },
       });
   }

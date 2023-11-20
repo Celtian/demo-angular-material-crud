@@ -115,7 +115,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
           if (err instanceof HttpErrorResponse && err.status >= 400 && err.status < 500) {
             this.dataSource.setData(DEFAULT_EXPANDED_POST);
           } else {
-            const error = this.translate.instant('ERROR.unexpected-exception');
+            const error = this.translate.instant('error.unexpected-exception');
             this.dataSource.setError(error);
           }
         },
@@ -132,12 +132,12 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: () => {
-          this.snackBar.open(this.translate.instant('response.delete.success'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.delete.success'), this.translate.instant('uni.close'));
           const translatedRoute = this.lr.translateRoute(`/`);
           this.router.navigate([translatedRoute]);
         },
         error: () => {
-          this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.delete.failed'), this.translate.instant('uni.close'));
         },
       });
   }

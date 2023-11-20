@@ -97,12 +97,12 @@ export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeact
       .subscribe({
         next: (post) => {
           this.form.reset(post);
-          this.snackBar.open(this.translate.instant('response.create.success'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.create.success'), this.translate.instant('uni.close'));
           const translatedRoute = this.lr.translateRoute(`/`);
           this.router.navigate([translatedRoute]);
         },
         error: () => {
-          this.snackBar.open(this.translate.instant('response.create.failed'), this.translate.instant('UNI.close'));
+          this.snackBar.open(this.translate.instant('response.create.failed'), this.translate.instant('uni.close'));
         },
       });
   }

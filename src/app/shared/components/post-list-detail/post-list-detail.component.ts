@@ -49,7 +49,7 @@ export class PostListDetailComponent implements OnChanges, OnInit {
           this.dataSource.setData(res);
         },
         error: () => {
-          const error = this.translate.instant('ERROR.unexpected-exception');
+          const error = this.translate.instant('error.unexpected-exception');
           this.dataSource.setError(error);
         },
       });

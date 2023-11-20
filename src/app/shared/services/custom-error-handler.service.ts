@@ -6,11 +6,15 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class CustomErrorHandlerService implements ErrorHandler {
-  constructor(private ngZone: NgZone, private snackbar: MatSnackBar, private translate: TranslateService) {}
+  constructor(
+    private ngZone: NgZone,
+    private snackbar: MatSnackBar,
+    private translate: TranslateService,
+  ) {}
 
   public handleError(error: unknown): void {
     this.ngZone.run(() => {
-      this.snackbar.open(this.translate.instant('ERROR.unexpected-exception'), 'danger');
+      this.snackbar.open(this.translate.instant('error.unexpected-exception'), 'danger');
     });
 
     throw error;
