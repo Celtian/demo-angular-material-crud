@@ -46,6 +46,14 @@
       "placeholder": "Type something here…"
     }
   },
+  "mat-paginator": {
+    "first-page": "First page",
+    "items-per-page": "Items per page",
+    "last-page": "Last page",
+    "next-page": "Next page",
+    "of": "from",
+    "previous-page": "Previous page"
+  },
   "not-found": {
     "content": "Page was not found"
   },
@@ -88,7 +96,7 @@
       "edit": "edit"
     }
   },
-  "SEO": {
+  "seo": {
     "app": {
       "not-found": {
         "description": "This website does not exist",
