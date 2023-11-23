@@ -78,8 +78,8 @@ export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeact
       const canonical = this.lr.translateRoute(`/${ROUTE_DEFINITION.POSTS.CREATE}`) as string;
       this.seoService.setSeo(
         {
-          title: this.translate.instant(`SEO.${ROUTE_DEFINITION.POSTS.CREATE}.title`),
-          description: this.translate.instant(`SEO.${ROUTE_DEFINITION.POSTS.CREATE}.description`),
+          title: this.translate.instant(`seo.${ROUTE_DEFINITION.POSTS.CREATE}.title`),
+          description: this.translate.instant(`seo.${ROUTE_DEFINITION.POSTS.CREATE}.description`),
         },
         canonical,
       );

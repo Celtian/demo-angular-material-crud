@@ -91,8 +91,8 @@ export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactiv
                 const canonical = this.lr.translateRoute(`/${id}/${ROUTE_DEFINITION.POSTS.EDIT}`) as string;
                 this.seoService.setSeo(
                   {
-                    title: this.translate.instant(`SEO.${ROUTE_DEFINITION.POSTS.EDIT}.title`),
-                    description: this.translate.instant(`SEO.${ROUTE_DEFINITION.POSTS.EDIT}.description`),
+                    title: this.translate.instant(`seo.${ROUTE_DEFINITION.POSTS.EDIT}.title`),
+                    description: this.translate.instant(`seo.${ROUTE_DEFINITION.POSTS.EDIT}.description`),
                   },
                   canonical,
                 );

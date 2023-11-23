@@ -11,16 +11,16 @@ export const ROUTES_I18N: RouteDefinitionDto<{
       route: _('routes.app.posts'),
       title: _('titles.app.posts'),
       seo: {
-        title: _('SEO.app.posts.title'),
-        description: _('SEO.app.posts.description'),
+        title: _('seo.app.posts.title'),
+        description: _('seo.app.posts.description'),
       },
     },
     NOT_FOUND: {
       route: _('routes.app.not-found'),
       title: _('titles.app.not-found'),
       seo: {
-        title: _('SEO.app.not-found.title'),
-        description: _('SEO.app.not-found.description'),
+        title: _('seo.app.not-found.title'),
+        description: _('seo.app.not-found.description'),
       },
     },
   },
@@ -29,24 +29,24 @@ export const ROUTES_I18N: RouteDefinitionDto<{
       route: _('routes.posts.detail'),
       title: _('titles.posts.detail'),
       seo: {
-        title: _('SEO.posts.detail.title'),
-        description: _('SEO.posts.detail.description'),
+        title: _('seo.posts.detail.title'),
+        description: _('seo.posts.detail.description'),
       },
     },
     CREATE: {
       route: _('routes.posts.create'),
       title: _('titles.posts.create'),
       seo: {
-        title: _('SEO.posts.create.title'),
-        description: _('SEO.posts.create.description'),
+        title: _('seo.posts.create.title'),
+        description: _('seo.posts.create.description'),
       },
     },
     EDIT: {
       route: _('routes.posts.edit'),
       title: _('titles.posts.edit'),
       seo: {
-        title: _('SEO.posts.edit.title'),
-        description: _('SEO.posts.edit.description'),
+        title: _('seo.posts.edit.title'),
+        description: _('seo.posts.edit.description'),
       },
     },
   },

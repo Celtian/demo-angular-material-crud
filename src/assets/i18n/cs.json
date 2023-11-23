@@ -46,6 +46,14 @@
       "placeholder": "Začněte zde psát…"
     }
   },
+  "mat-paginator": {
+    "first-page": "První stránka",
+    "items-per-page": "Položek na stránku",
+    "last-page": "Poslední stránka",
+    "next-page": "Další stránka",
+    "of": "z",
+    "previous-page": "Předchozí stránka"
+  },
   "not-found": {
     "content": "Stránka nebyla nalezena"
   },
@@ -88,7 +96,7 @@
       "edit": "upravit"
     }
   },
-  "SEO": {
+  "seo": {
     "app": {
       "not-found": {
         "description": "Tato stránka nebyla nalezena",

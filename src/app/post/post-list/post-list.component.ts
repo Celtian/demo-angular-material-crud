@@ -107,8 +107,8 @@ export class PostListComponent implements OnInit, OnDestroy {
       const canonical = this.lr.translateRoute(`/`) as string;
       this.seoService.setSeo(
         {
-          title: this.translate.instant(`SEO.${ROUTE_DEFINITION.APP.POSTS}.title`),
-          description: this.translate.instant(`SEO.${ROUTE_DEFINITION.APP.POSTS}.description`),
+          title: this.translate.instant(`seo.${ROUTE_DEFINITION.APP.POSTS}.title`),
+          description: this.translate.instant(`seo.${ROUTE_DEFINITION.APP.POSTS}.description`),
         },
         canonical,
       );
