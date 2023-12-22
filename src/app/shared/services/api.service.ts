@@ -5,6 +5,14 @@ import { Pagination } from '../dto/pagination.dto';
 import { ExpandedPostDto, PostDto, PostInputDto } from '../dto/post.dto';
 import { UserDto } from '../dto/user.dto';
 
+interface PostListInput {
+  page: number;
+  limit: number;
+  sort: keyof PostDto;
+  order: 'asc' | 'desc';
+  query: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,21 +21,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  public list(
-    page = 1,
-    limit = 5,
-    sort: keyof PostDto = 'id',
-    order: 'asc' | 'desc' = 'asc',
-    query = ''
-  ): Observable<Pagination<PostDto>> {
-    const params = [`_limit=${limit}`, `_sort=${sort}`, `_order=${order}`];
+  public list(input: PostListInput): Observable<Pagination<PostDto>> {
+    const params = [`_limit=${input.limit}`, `_sort=${input.sort}`, `_order=${input.order}`];
 
-    if (page > 0) {
-      params.push(`_page=${page}`);
+    if (input.page > 0) {
+      params.push(`_page=${input.page}`);
     }
 
-    if (query) {
-      params.push(`title_like=${query}`);
+    if (input.query) {
+      params.push(`title_like=${input.query}`);
       // params.push(`body_like=${query}`);
       // params.push(`_q=${query}`);
     }
@@ -42,7 +44,7 @@ export class ApiService {
             totalCount: Number(res.headers.get('x-total-count')) || 0,
             items: res.body || [],
           };
-        })
+        }),
       );
   }
 
