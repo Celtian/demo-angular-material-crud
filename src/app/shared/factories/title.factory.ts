@@ -1,6 +1,6 @@
 import { ResolveFn } from '@angular/router';
 import { PageOptions } from '../dto/page.dto';
-import { PAGE_ACTION_I18N, PAGE_SECTION_I18N } from '../i18n/page.i18m';
+import { PAGE_ACTION_I18N, PAGE_SECTION_I18N } from '../i18n/page.i18n';
 
 export const titleResolverFactory = (options: PageOptions): ResolveFn<string> => {
   return (route) => {
