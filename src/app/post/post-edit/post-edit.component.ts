@@ -48,9 +48,7 @@ import { CustomConfirmDialog, CustomConfirmDialogService } from 'src/app/shared/
 })
 export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
-
   private destroyRef = inject(DestroyRef);
-
   public dataSource = new DataSource<PostDto>(DEFAULT_POST);
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
 

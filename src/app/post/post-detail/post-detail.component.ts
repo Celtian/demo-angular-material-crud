@@ -42,10 +42,8 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
   ],
 })
 export class PostDetailComponent implements OnInit, OnDestroy {
-  private destroyRef = inject(DestroyRef);
-
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
-
+  private destroyRef = inject(DestroyRef);
   public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST);
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
 
