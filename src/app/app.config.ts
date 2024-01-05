@@ -8,9 +8,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxAppVersionModule } from 'ngx-app-version';
-import { NgxFixedFooterModule } from 'ngx-fixed-footer';
-import { NgxTranslateVersionModule } from 'ngx-translate-version';
+import { provideAppVersion } from 'ngx-app-version';
+import { provideFixedFooter } from 'ngx-fixed-footer';
+import { provideTranslateVersion } from 'ngx-translate-version';
 import { VERSION } from '../environments/version';
 import { routes } from './app.routes';
 import { CustomErrorHandlerService } from './shared/services/custom-error-handler.service';
@@ -22,22 +22,17 @@ registerLocaleData(localeCs, 'cs-CS');
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withViewTransitions()),
-    importProvidersFrom(
-      BrowserModule,
-      BrowserAnimationsModule,
-      MatSnackBarModule,
-      MatDialogModule,
-      NgxTranslateVersionModule.forRoot(routes, {
-        version: VERSION.version,
-      }),
-      NgxFixedFooterModule.forRoot({
-        containerSelector: '.permanent-footer',
-        cssAttribute: 'margin',
-      }),
-      NgxAppVersionModule.forRoot({
-        version: VERSION.version,
-      }),
-    ),
+    provideAppVersion({
+      version: VERSION.version,
+    }),
+    provideTranslateVersion(routes, {
+      version: VERSION.version,
+    }),
+    provideFixedFooter({
+      containerSelector: '.permanent-footer',
+      cssAttribute: 'margin',
+    }),
+    importProvidersFrom(BrowserModule, BrowserAnimationsModule, MatSnackBarModule, MatDialogModule),
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top', horizontalPosition: 'right' } },
     { provide: ErrorHandler, useClass: CustomErrorHandlerService },
     { provide: TitleStrategy, useClass: CustomTitleStrategyService },
