@@ -26,7 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 import { TranslateModule } from '@ngx-translate/core';
-import { combineLatest } from 'rxjs';
+import { combineLatest, debounceTime } from 'rxjs';
 import { PostListDetailComponent } from 'src/app/shared/components/post-list-detail/post-list-detail.component';
 import { ROUTE_DEFINITION } from 'src/app/shared/constants/route-definition.constant';
 import { PostDeleteDirective } from 'src/app/shared/directives/post-delete.directive';
@@ -105,7 +105,6 @@ export class PostListComponent implements OnInit, OnDestroy {
           query: this.query(),
         })
         .pipe(takeUntilDestroyed(this.destroyRef))
-
         .subscribe((posts) => {
           this.data.set(posts.items);
           this.totalCount.set(posts.totalCount);
@@ -125,7 +124,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.route.queryParamMap.pipe(getParamQuery()),
       this.route.queryParamMap.pipe(getParamSort()),
     ])
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(debounceTime(1000), takeUntilDestroyed(this.destroyRef))
       .subscribe(([page, query, sort]) => {
         this.query.set(query);
         this.pageIndex.set(page.pageIndex || 1);
