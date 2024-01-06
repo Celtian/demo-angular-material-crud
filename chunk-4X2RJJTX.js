@@ -1,1 +1,0 @@
-import{Ka as s,U as r,da as o,e as n,va as i}from"./chunk-6V6PCDCB.js";function c(t){t||(i(c),t=o(s));let a=new n(e=>t.onDestroy(e.next.bind(e)));return e=>e.pipe(r(a))}var j={APP:{POSTS:"app.posts",NOT_FOUND:"app.not-found"},POSTS:{DETAIL:"posts.detail",CREATE:"posts.create",EDIT:"posts.edit"}};export{c as a,j as b};
