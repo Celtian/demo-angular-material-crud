@@ -151,6 +151,15 @@
     }
   },
   "uni": {
+    "aria-label": {
+      "arrow-icon": "Arrow icon",
+      "error-icon": "Error icon",
+      "expand-row": "expand row",
+      "row-actions": "row actions",
+      "select-page-of-posts": "Select page of posts",
+      "show-actions": "Zobrazit akce",
+      "warning-icon": "Warning icon"
+    },
     "clear": "Clear",
     "clear-filters": "Clear filters",
     "close": "Close",
