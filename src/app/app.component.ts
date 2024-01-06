@@ -9,6 +9,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxAppVersionDirective } from 'ngx-app-version';
+import { NgxFixedFooterDirective } from 'ngx-fixed-footer';
 import { Observable } from 'rxjs';
 import { VERSION } from 'src/environments/version';
 import { DEFAULT_LANGUAGE } from './shared/constants/language.constant';
@@ -33,6 +34,7 @@ import { LanguageService } from './shared/services/language.service';
     MatToolbarModule,
     LocalizeRouterModule,
     PortalModule,
+    NgxFixedFooterDirective,
   ],
 })
 export class AppComponent implements OnInit {

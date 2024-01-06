@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
       version: VERSION.version,
     }),
     provideFixedFooter({
-      containerSelector: '.permanent-footer',
+      containerSelector: '.permanent-main',
       cssAttribute: 'margin',
     }),
     importProvidersFrom(BrowserModule, BrowserAnimationsModule, MatSnackBarModule, MatDialogModule),
