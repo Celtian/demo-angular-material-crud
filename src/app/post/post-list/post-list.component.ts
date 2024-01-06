@@ -96,7 +96,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     private breadcrumbsPortalService: BreadcrumbsPortalService,
   ) {
     effect(() => {
-      return this.apiService
+      this.apiService
         .list({
           page: this.pageIndex(),
           limit: this.pageSize(),
