@@ -32,10 +32,8 @@ export class PostListDetailComponent implements OnChanges, OnInit {
   public dataSource = new DataSource<UserDto>(DEFAULT_USER);
   private idSubj = new Subject<number>();
 
-  constructor(
-    private apiService: ApiService,
-    private translate: TranslateService,
-  ) {}
+  private apiService = inject(ApiService);
+  private translate = inject(TranslateService);
 
   public ngOnInit(): void {
     this.idSubj

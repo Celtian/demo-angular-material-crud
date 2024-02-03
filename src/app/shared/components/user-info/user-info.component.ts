@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserDto } from '../../dto/user.dto';
 
@@ -11,6 +11,6 @@ import { UserDto } from '../../dto/user.dto';
   imports: [TranslateModule],
 })
 export class UserInfoComponent {
-  @Input({ required: true }) public user!: UserDto;
-  @Input({ required: true }) public isLoading = false;
+  public user = input.required<UserDto>();
+  public isLoading = input.required<boolean>();
 }

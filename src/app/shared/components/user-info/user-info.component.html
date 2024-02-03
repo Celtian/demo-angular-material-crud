@@ -1,53 +1,53 @@
-<table class="w-full" [class.blur-sm]="isLoading">
+<table class="w-full" [class.blur-sm]="isLoading()">
   <colgroup>
     <col width="150" />
     <col />
   </colgroup>
-  @if (user) {
+  @if (user(); as u) {
     <tbody>
       <tr>
         <td class="font-bold">{{ 'post-detail.user.id' | translate }}</td>
-        <td>{{ '#' + user.id }}</td>
+        <td>{{ '#' + u.id }}</td>
       </tr>
       <tr>
         <td class="font-bold">{{ 'post-detail.user.name' | translate }}</td>
-        <td>{{ user.name }}</td>
+        <td>{{ u.name }}</td>
       </tr>
       <tr>
         <td class="font-bold">{{ 'post-detail.user.username' | translate }}</td>
-        <td>{{ user.username }}</td>
+        <td>{{ u.username }}</td>
       </tr>
       <tr>
         <td class="font-bold">{{ 'post-detail.user.email' | translate }}</td>
-        <td>{{ user.email }}</td>
+        <td>{{ u.email }}</td>
       </tr>
       <tr>
         <td class="font-bold">{{ 'post-detail.user.phone' | translate }}</td>
-        <td>{{ user.phone }}</td>
+        <td>{{ u.phone }}</td>
       </tr>
       <tr>
         <td class="font-bold">{{ 'post-detail.user.website' | translate }}</td>
-        <td>{{ user.website }}</td>
+        <td>{{ u.website }}</td>
       </tr>
-      @if (user.address) {
+      @if (u.address) {
         <tr class="align-baseline">
           <td class="font-bold">{{ 'post-detail.user.address' | translate }}</td>
           <td>
-            <div>{{ user.address.street }}</div>
-            <div>{{ user.address.suite }}</div>
-            <div>{{ user.address.city }}</div>
-            <div>{{ user.address.zipcode }}</div>
-            <div>{{ user.address.geo.lat }}, {{ user.address.geo.lng }}</div>
+            <div>{{ u.address.street }}</div>
+            <div>{{ u.address.suite }}</div>
+            <div>{{ u.address.city }}</div>
+            <div>{{ u.address.zipcode }}</div>
+            <div>{{ u.address.geo.lat }}, {{ u.address.geo.lng }}</div>
           </td>
         </tr>
       }
-      @if (user.company) {
+      @if (u.company) {
         <tr class="align-baseline">
           <td class="font-bold">{{ 'post-detail.user.company' | translate }}</td>
           <td>
-            <div>{{ user.company.name }}</div>
-            <div>{{ user.company.catchPhrase }}</div>
-            <div>{{ user.company.bs }}</div>
+            <div>{{ u.company.name }}</div>
+            <div>{{ u.company.catchPhrase }}</div>
+            <div>{{ u.company.bs }}</div>
           </td>
         </tr>
       }
