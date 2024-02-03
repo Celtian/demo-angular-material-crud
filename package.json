@@ -36,7 +36,6 @@
     "@angular/router": "^17.1.2",
     "@gilsdav/ngx-translate-router": "^7.0.0",
     "@gilsdav/ngx-translate-router-http-loader": "^2.0.0",
-    "@ngneat/tailwind": "7.0.3",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "lodash-es": "^4.17.21",

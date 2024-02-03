@@ -3047,11 +3047,6 @@
     "@material/theme" "15.0.0-canary.7f224ddd4.0"
     tslib "^2.1.0"
 
-"@ngneat/tailwind@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-7.0.3.tgz#fff7edff35642b249d8711a9b10d5753216dd4a9"
-  integrity sha512-o9quceIAomYD+P/40tJ1n1G/CkWcAa1dWW5/acCz4qnS7ajhGsBoSD4N+usi+vqdoEJnunCsoEBWL9OMsSwcFA==
-
 "@ngtools/webpack@17.1.2":
   version "17.1.2"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-17.1.2.tgz#cc0faae6ed5938060c30c7eedb609216eb21e2b1"
