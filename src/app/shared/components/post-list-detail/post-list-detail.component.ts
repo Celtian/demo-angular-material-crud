@@ -1,16 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subject, debounceTime, switchMap } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { DataSource } from 'src/app/shared/classes/data-source';
 import { DEFAULT_USER } from 'src/app/shared/constants/user.constant';
 import { UserDto } from 'src/app/shared/dto/user.dto';
@@ -25,39 +16,28 @@ import { UserInfoComponent } from '../user-info/user-info.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [UserInfoComponent, TranslateModule],
 })
-export class PostListDetailComponent implements OnChanges, OnInit {
-  @Input({ required: true }) public id!: number;
+export class PostListDetailComponent {
+  public id = input.required<number>();
 
-  private destroyRef = inject(DestroyRef);
   public dataSource = new DataSource<UserDto>(DEFAULT_USER);
-  private idSubj = new Subject<number>();
-
+  private destroyRef = inject(DestroyRef);
   private apiService = inject(ApiService);
   private translate = inject(TranslateService);
 
-  public ngOnInit(): void {
-    this.idSubj
-      .pipe(
-        debounceTime(500),
-        switchMap((id) => this.apiService.user(id)),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe({
-        next: (res) => {
-          this.dataSource.setData(res);
-        },
-        error: () => {
-          const error = this.translate.instant('error.unexpected-exception');
-          this.dataSource.setError(error);
-        },
-      });
-
-    this.idSubj.next(this.id);
-  }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['id']) {
-      this.idSubj.next(this.id);
-    }
+  constructor() {
+    effect(() => {
+      this.apiService
+        .user(this.id())
+        .pipe(debounceTime(500), takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: (res) => {
+            this.dataSource.setData(res);
+          },
+          error: () => {
+            const error = this.translate.instant('error.unexpected-exception');
+            this.dataSource.setError(error);
+          },
+        });
+    });
   }
 }
