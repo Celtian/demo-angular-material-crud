@@ -1,1 +1,0 @@
-import{Aa as i,V as r,ea as s,f as n,qa as o}from"./chunk-LBMTRLHA.js";function c(t){t||(o(c),t=s(i));let u=new n(e=>t.onDestroy(e.next.bind(e)));return e=>e.pipe(r(u))}var O={APP:{POSTS:"app.posts",NOT_FOUND:"app.not-found"},POSTS:{DETAIL:"posts.detail",CREATE:"posts.create",EDIT:"posts.edit"}};export{c as a,O as b};
