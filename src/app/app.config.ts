@@ -1,6 +1,11 @@
 import { registerLocaleData } from '@angular/common';
 import localeCs from '@angular/common/locales/cs';
-import { ApplicationConfig, ErrorHandler, importProvidersFrom } from '@angular/core';
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  importProvidersFrom,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { TitleStrategy, provideRouter, withViewTransitions } from '@angular/router';
 
@@ -21,6 +26,7 @@ registerLocaleData(localeCs, 'cs-CS');
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
     provideAppVersion({
       version: VERSION.version,
