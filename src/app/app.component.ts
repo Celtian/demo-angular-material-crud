@@ -1,7 +1,7 @@
-import { Portal, PortalModule } from '@angular/cdk/portal';
+import { PortalModule } from '@angular/cdk/portal';
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,7 +10,6 @@ import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxAppVersionDirective } from 'ngx-app-version';
 import { NgxFixedFooterDirective } from 'ngx-fixed-footer';
-import { Observable } from 'rxjs';
 import { VERSION } from 'src/environments/version';
 import { DEFAULT_LANGUAGE } from './shared/constants/language.constant';
 import { SeoDirective } from './shared/directives/seo.directive';
@@ -40,7 +39,7 @@ import { LanguageService } from './shared/services/language.service';
 export class AppComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   public endYear = new Date(VERSION.date).getFullYear();
-  public breadcrumbsPortal$!: Observable<Portal<unknown>>;
+  public breadcrumbsPortal = toSignal(this.breadcrumbsPortalService.portal$);
   public lang = DEFAULT_LANGUAGE;
 
   constructor(
@@ -51,7 +50,6 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.breadcrumbsPortal$ = this.breadcrumbsPortalService.portal$;
     this.language.language$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((language) => (this.lang = language));
   }
 
