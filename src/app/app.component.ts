@@ -1,5 +1,4 @@
 import { PortalModule } from '@angular/cdk/portal';
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,14 +16,12 @@ import { BreadcrumbsPortalService } from './shared/services/breadcrumbs-portal.s
 import { LanguageService } from './shared/services/language.service';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   hostDirectives: [NgxAppVersionDirective, SeoDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AsyncPipe,
     RouterOutlet,
     RouterLink,
     MatIconModule,

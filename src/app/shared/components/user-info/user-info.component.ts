@@ -3,7 +3,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UserDto } from '../../dto/user.dto';
 
 @Component({
-  standalone: true,
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrl: './user-info.component.scss',

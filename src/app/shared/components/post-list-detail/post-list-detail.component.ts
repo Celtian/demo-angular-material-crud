@@ -9,7 +9,6 @@ import { ApiService } from 'src/app/shared/services/api.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
-  standalone: true,
   selector: 'app-post-list-detail',
   templateUrl: './post-list-detail.component.html',
   styleUrl: './post-list-detail.component.scss',
