@@ -41,8 +41,7 @@
             "outputPath": "dist/demo-angular-material-crud",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-            ],
+            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -103,8 +102,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-            ],
+            "polyfills": [],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -131,7 +129,12 @@
           "builder": "ngx-devkit-builders:version",
           "options": {
             "outputFile": "src/environments/version.ts",
-            "fields": ["version", "date", "git", "author"],
+            "fields": [
+              "version",
+              "date",
+              "git",
+              "author"
+            ],
             "lint": "eslint",
             "verbose": false
           }
