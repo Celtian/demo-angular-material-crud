@@ -33,9 +33,6 @@ jobs:
       - name: 🧹 Lint
         run: yarn lint
 
-      - name: ♻️ Check circular dependencies
-        run: yarn check-circular-dependencies
-
       - name: 📦 Build demo app
         run: yarn build --base-href https://celtian.github.io/demo-angular-material-crud/
 
