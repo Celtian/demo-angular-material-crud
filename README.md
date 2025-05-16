@@ -3,7 +3,7 @@
 ## 🗎 Description
 
 - Standards: HTML5, CSS3
-- Components: Angular 19, Angular Material, Tailwind CSS
+- Components: Angular 20, Angular Material, Tailwind CSS
 - Software: Visual Studio Code
 - See [Humans.txt](https://celtian.github.io/demo-angular-material-crud/humans.txt)
 - Api taken from [here](https://jsonplaceholder.typicode.com)
