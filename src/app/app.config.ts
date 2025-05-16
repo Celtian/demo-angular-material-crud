@@ -1,18 +1,12 @@
 import { registerLocaleData } from '@angular/common';
 import localeCs from '@angular/common/locales/cs';
-import {
-  ApplicationConfig,
-  ErrorHandler,
-  importProvidersFrom,
-  provideExperimentalZonelessChangeDetection,
-} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { TitleStrategy, provideRouter, withViewTransitions } from '@angular/router';
-
+import { ApplicationConfig, ErrorHandler, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TitleStrategy, provideRouter, withViewTransitions } from '@angular/router';
 import { provideAppVersion } from 'ngx-app-version';
 import { provideFixedFooter } from 'ngx-fixed-footer';
 import { provideTranslateVersion } from 'ngx-translate-version';
@@ -26,7 +20,7 @@ registerLocaleData(localeCs, 'cs-CS');
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
     provideAppVersion({
       version: VERSION.version,

@@ -11,7 +11,7 @@
 
 ## 🛠️ Instalation
 
-Definitelly works with Node `v22.2.0` & yarn `1.22.21`
+Definitelly works with Node `v24.0.2` & yarn `1.22.21`
 
 ```
 yarn install
