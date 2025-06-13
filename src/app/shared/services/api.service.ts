@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Pagination } from '../dto/pagination.dto';
 import { ExpandedPostDto, PostDto, PostInputDto } from '../dto/post.dto';
@@ -17,9 +17,9 @@ interface PostListInput {
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly apiUrl = 'https://jsonplaceholder.typicode.com';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly apiUrl = 'https://jsonplaceholder.typicode.com';
 
   public list(input: PostListInput): Observable<Pagination<PostDto>> {
     const params = [`_limit=${input.limit}`, `_sort=${input.sort}`, `_order=${input.order}`];

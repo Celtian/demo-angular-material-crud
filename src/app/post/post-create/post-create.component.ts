@@ -1,5 +1,5 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -37,6 +37,15 @@ import { CustomConfirmDialog, CustomConfirmDialogService } from 'src/app/shared/
   ],
 })
 export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeactivate {
+  private apiService = inject(ApiService);
+  private breadcrumbsPortalService = inject(BreadcrumbsPortalService);
+  private fb = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  private router = inject(Router);
+  private lr = inject(LocalizeRouterService);
+  private translate = inject(TranslateService);
+  private confirm = inject(CustomConfirmDialogService);
+
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
   public form = this.fb.group({
@@ -44,17 +53,6 @@ export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeact
     body: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.min(3)] }),
     userId: new FormControl<number>(1, { nonNullable: true }),
   });
-
-  constructor(
-    private apiService: ApiService,
-    private breadcrumbsPortalService: BreadcrumbsPortalService,
-    private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    private router: Router,
-    private lr: LocalizeRouterService,
-    private translate: TranslateService,
-    private confirm: CustomConfirmDialogService,
-  ) {}
 
   public canDeactivate(): boolean | Observable<boolean> {
     return this.form.pristine || this.confirm.openCustomConfirmDialog(CustomConfirmDialog.UnsavedWork);

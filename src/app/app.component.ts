@@ -34,15 +34,15 @@ import { LanguageService } from './shared/services/language.service';
   ],
 })
 export class AppComponent implements OnInit {
+  private breadcrumbsPortalService = inject(BreadcrumbsPortalService);
+  private language = inject(LanguageService);
+
   private destroyRef = inject(DestroyRef);
   public endYear = new Date(VERSION.date).getFullYear();
   public breadcrumbsPortal = toSignal(this.breadcrumbsPortalService.portal$);
   public lang = DEFAULT_LANGUAGE;
 
-  constructor(
-    private breadcrumbsPortalService: BreadcrumbsPortalService,
-    private language: LanguageService,
-  ) {
+  constructor() {
     this.language.initLang();
   }
 

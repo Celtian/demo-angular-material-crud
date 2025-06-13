@@ -146,11 +146,10 @@
     </td>
   </ng-container>
 
-  <!-- eslint-disable-next-line @angular-eslint/template/prefer-self-closing-tags -->
   <tr mat-header-row *matHeaderRowDef="displayedColumnsExpanded"></tr>
-  <!-- eslint-disable-next-line @angular-eslint/template/prefer-self-closing-tags -->
+
   <tr mat-row *matRowDef="let row; columns: displayedColumnsExpanded"></tr>
-  <!-- eslint-disable-next-line @angular-eslint/template/prefer-self-closing-tags -->
+
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expandable-row"></tr>
 </table>
 

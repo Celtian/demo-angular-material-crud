@@ -69,6 +69,12 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
   ],
 })
 export class PostListComponent implements OnInit, OnDestroy {
+  private apiService = inject(ApiService);
+  private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private breadcrumbsPortalService = inject(BreadcrumbsPortalService);
+
   @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
 
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
@@ -87,13 +93,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   public expandedElement: PostDto | null = null;
   private destroyRef = inject(DestroyRef);
 
-  constructor(
-    private apiService: ApiService,
-    private cdr: ChangeDetectorRef,
-    private router: Router,
-    private route: ActivatedRoute,
-    private breadcrumbsPortalService: BreadcrumbsPortalService,
-  ) {
+  constructor() {
     effect(() => {
       this.apiService
         .list({
