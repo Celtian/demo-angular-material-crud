@@ -1,7 +1,7 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { UpperCasePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -48,17 +48,17 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   private lr = inject(LocalizeRouterService);
   private router = inject(Router);
 
-  @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
+  public readonly portalContent = viewChild.required(CdkPortal);
   private destroyRef = inject(DestroyRef);
   public dataSource = new DataSource<ExpandedPostDto>(DEFAULT_EXPANDED_POST);
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
 
   public ngOnDestroy(): void {
-    this.portalContent?.detach();
+    this.portalContent()?.detach();
   }
 
   public ngOnInit(): void {
-    this.breadcrumbsPortalService.setPortal(this.portalContent);
+    this.breadcrumbsPortalService.setPortal(this.portalContent());
 
     this.route.paramMap
       .pipe(

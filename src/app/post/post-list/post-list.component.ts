@@ -7,10 +7,10 @@ import {
   DestroyRef,
   OnDestroy,
   OnInit,
-  ViewChild,
   effect,
   inject,
   signal,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
@@ -75,7 +75,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private breadcrumbsPortalService = inject(BreadcrumbsPortalService);
 
-  @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
+  public readonly portalContent = viewChild.required(CdkPortal);
 
   public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;
   public readonly displayedColumns: string[] = ['id', 'title', 'actions'];
@@ -112,11 +112,11 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.portalContent?.detach();
+    this.portalContent()?.detach();
   }
 
   public ngOnInit(): void {
-    this.breadcrumbsPortalService.setPortal(this.portalContent);
+    this.breadcrumbsPortalService.setPortal(this.portalContent());
 
     combineLatest([
       this.route.queryParamMap.pipe(getParamPage()),

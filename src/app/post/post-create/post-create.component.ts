@@ -1,5 +1,5 @@
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -46,7 +46,7 @@ export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeact
   private translate = inject(TranslateService);
   private confirm = inject(CustomConfirmDialogService);
 
-  @ViewChild(CdkPortal, { static: true }) public portalContent!: CdkPortal;
+  public readonly portalContent = viewChild.required(CdkPortal);
 
   public form = this.fb.group({
     title: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.min(3)] }),
@@ -59,11 +59,11 @@ export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeact
   }
 
   public ngOnInit(): void {
-    this.breadcrumbsPortalService.setPortal(this.portalContent);
+    this.breadcrumbsPortalService.setPortal(this.portalContent());
   }
 
   public ngOnDestroy(): void {
-    this.portalContent?.detach();
+    this.portalContent()?.detach();
   }
 
   public onSubmit(): void {
