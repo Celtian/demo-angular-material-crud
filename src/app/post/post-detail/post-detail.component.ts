@@ -24,9 +24,6 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
 
 @Component({
   selector: 'app-post-detail',
-  templateUrl: './post-detail.component.html',
-  styleUrl: './post-detail.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     UpperCasePipe,
     MatCardModule,
@@ -39,6 +36,9 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
     LocalizeRouterModule,
     PostDeleteDirective,
   ],
+  templateUrl: './post-detail.component.html',
+  styleUrl: './post-detail.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostDetailComponent implements OnInit, OnDestroy {
   private apiService = inject(ApiService);

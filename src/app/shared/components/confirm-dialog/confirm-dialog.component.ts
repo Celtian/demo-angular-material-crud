@@ -10,10 +10,10 @@ export interface ConfirmDialogData {
 
 @Component({
   selector: 'app-confirm-dialog',
+  imports: [MatDialogModule, MatButtonModule, MatDialogModule, TranslateModule],
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatDialogModule, MatButtonModule, MatDialogModule, TranslateModule],
 })
 export class ConfirmDialogComponent {
   data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);

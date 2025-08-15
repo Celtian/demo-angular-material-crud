@@ -20,9 +20,6 @@ import { CustomConfirmDialog, CustomConfirmDialogService } from 'src/app/shared/
 
 @Component({
   selector: 'app-post-create',
-  templateUrl: './post-create.component.html',
-  styleUrl: './post-create.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     MatCardModule,
@@ -35,6 +32,9 @@ import { CustomConfirmDialog, CustomConfirmDialogService } from 'src/app/shared/
     RouterLink,
     LocalizeRouterModule,
   ],
+  templateUrl: './post-create.component.html',
+  styleUrl: './post-create.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostCreateComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   private apiService = inject(ApiService);

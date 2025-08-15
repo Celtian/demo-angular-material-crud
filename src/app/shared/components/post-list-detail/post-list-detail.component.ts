@@ -10,10 +10,10 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-post-list-detail',
+  imports: [UserInfoComponent, TranslateModule],
   templateUrl: './post-list-detail.component.html',
   styleUrl: './post-list-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [UserInfoComponent, TranslateModule],
 })
 export class PostListDetailComponent {
   public id = input.required<number>();

@@ -28,9 +28,6 @@ import { CustomConfirmDialog, CustomConfirmDialogService } from 'src/app/shared/
 
 @Component({
   selector: 'app-post-edit',
-  templateUrl: './post-edit.component.html',
-  styleUrl: './post-edit.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     PortalModule,
     MatIconModule,
@@ -44,6 +41,9 @@ import { CustomConfirmDialog, CustomConfirmDialogService } from 'src/app/shared/
     LocalizeRouterModule,
     PostDeleteDirective,
   ],
+  templateUrl: './post-edit.component.html',
+  styleUrl: './post-edit.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostEditComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   private apiService = inject(ApiService);

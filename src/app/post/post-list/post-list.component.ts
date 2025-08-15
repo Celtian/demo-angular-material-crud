@@ -39,16 +39,6 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
 
 @Component({
   selector: 'app-post-list',
-  templateUrl: './post-list.component.html',
-  styleUrl: './post-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
   imports: [
     FormsModule,
     LocalizeRouterModule,
@@ -66,6 +56,16 @@ import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-po
     TranslateModule,
     PortalModule,
     PostDeleteDirective,
+  ],
+  templateUrl: './post-list.component.html',
+  styleUrl: './post-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
   ],
 })
 export class PostListComponent implements OnInit, OnDestroy {

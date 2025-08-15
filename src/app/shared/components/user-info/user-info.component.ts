@@ -4,10 +4,10 @@ import { UserDto } from '../../dto/user.dto';
 
 @Component({
   selector: 'app-user-info',
+  imports: [TranslateModule],
   templateUrl: './user-info.component.html',
   styleUrl: './user-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslateModule],
 })
 export class UserInfoComponent {
   public user = input.required<UserDto>();
