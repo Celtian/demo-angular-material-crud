@@ -39,7 +39,7 @@ only via Github Pipelines
 
 ## 🪪 License
 
-Copyright &copy; 2023 - 2025 [Dominik Hladik](https://github.com/Celtian)
+Copyright &copy; 2023 - 2026 [Dominik Hladik](https://github.com/Celtian)
 
 All contents are licensed under the [MIT license].
 

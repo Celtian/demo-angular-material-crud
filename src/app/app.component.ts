@@ -9,11 +9,11 @@ import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxAppVersionDirective } from 'ngx-app-version';
 import { NgxFixedFooterDirective } from 'ngx-fixed-footer';
-import { VERSION } from 'src/environments/version';
 import { DEFAULT_LANGUAGE } from './shared/constants/language.constant';
 import { SeoDirective } from './shared/directives/seo.directive';
 import { BreadcrumbsPortalService } from './shared/services/breadcrumbs-portal.service';
 import { LanguageService } from './shared/services/language.service';
+import { VERSION_INFO } from './version';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   private language = inject(LanguageService);
 
   private destroyRef = inject(DestroyRef);
-  public endYear = new Date(VERSION.date).getFullYear();
+  public endYear = new Date(VERSION_INFO.date).getFullYear();
   public breadcrumbsPortal = toSignal(this.breadcrumbsPortalService.portal$);
   public lang = DEFAULT_LANGUAGE;
 
