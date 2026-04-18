@@ -82,7 +82,7 @@
     },
     "update": {
       "failed": "Update failed",
-      "success": "Succesfully updated"
+      "success": "Successfully updated"
     }
   },
   "routes": {
