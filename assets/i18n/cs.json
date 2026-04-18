@@ -33,7 +33,7 @@
     "post": {
       "body": {
         "label": "Obsah",
-        "placeholder": "Napiště něco zde…"
+        "placeholder": "Napište něco zde…"
       },
       "title": {
         "label": "Název"
