@@ -18,7 +18,6 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "files.eol": "\n",
   "files.encoding": "utf8",
   "prettier.endOfLine": "lf",
