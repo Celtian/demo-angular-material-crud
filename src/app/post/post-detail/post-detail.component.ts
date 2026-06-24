@@ -10,17 +10,17 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LocalizeRouterModule, LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { delay, switchMap } from 'rxjs';
-import { DataSource } from 'src/app/shared/classes/data-source';
-import { UserInfoComponent } from 'src/app/shared/components/user-info/user-info.component';
-import { DEFAULT_EXPANDED_POST } from 'src/app/shared/constants/post.constant';
-import { ROUTE_DEFINITION } from 'src/app/shared/constants/route-definition.constant';
-import { PostDeleteDirective } from 'src/app/shared/directives/post-delete.directive';
-import { ExpandedPostDto } from 'src/app/shared/dto/post.dto';
-import { filterNumber } from 'src/app/shared/rxjs/filter-number';
-import { getParamId } from 'src/app/shared/rxjs/get-param-id';
-import { setInitialIfNotNumber } from 'src/app/shared/rxjs/set-initial-if-not-number';
-import { ApiService } from 'src/app/shared/services/api.service';
-import { BreadcrumbsPortalService } from 'src/app/shared/services/breadcrumbs-portal.service';
+import { DataSource } from '../../shared/classes/data-source';
+import { UserInfoComponent } from '../../shared/components/user-info/user-info.component';
+import { DEFAULT_EXPANDED_POST } from '../../shared/constants/post.constant';
+import { ROUTE_DEFINITION } from '../../shared/constants/route-definition.constant';
+import { PostDeleteDirective } from '../../shared/directives/post-delete.directive';
+import { ExpandedPostDto } from '../../shared/dto/post.dto';
+import { filterNumber } from '../../shared/rxjs/filter-number';
+import { getParamId } from '../../shared/rxjs/get-param-id';
+import { setInitialIfNotNumber } from '../../shared/rxjs/set-initial-if-not-number';
+import { ApiService } from '../../shared/services/api.service';
+import { BreadcrumbsPortalService } from '../../shared/services/breadcrumbs-portal.service';
 
 @Component({
   selector: 'app-post-detail',

@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject, input }
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { debounceTime } from 'rxjs';
-import { DataSource } from 'src/app/shared/classes/data-source';
-import { DEFAULT_USER } from 'src/app/shared/constants/user.constant';
-import { UserDto } from 'src/app/shared/dto/user.dto';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { DataSource } from '../../classes/data-source';
+import { DEFAULT_USER } from '../../constants/user.constant';
+import { UserDto } from '../../dto/user.dto';
+import { ApiService } from '../../services/api.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
