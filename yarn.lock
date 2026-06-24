@@ -1362,10 +1362,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@gilsdav/ngx-translate-router@^7.2.1":
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/@gilsdav/ngx-translate-router/-/ngx-translate-router-7.2.1.tgz#15ae450e00eca5131e13f81447a05fc43b9f9e4a"
-  integrity sha512-h4z24m7d7IQRogDu7muNFtkdHr6zPf0O/M/CEIL2Td9ad667ULTBccJkFdp5ZtgM2dul6moV9jccMFdgIbIjKg==
+"@gilsdav/ngx-translate-router@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@gilsdav/ngx-translate-router/-/ngx-translate-router-8.0.0.tgz#74b7e9ea72e66e563bc0aeb81f58b05f60f4d1dd"
+  integrity sha512-PhZt0fCAIBQuavdUkdwe351rL0rgHv1cxClLINwoZ//Hm5rllbqJr4/lQh9kMSKeRzYyoCl11VfhKfdips1J6w==
   dependencies:
     tslib "^2.3.0"
 
@@ -1894,17 +1894,17 @@
   dependencies:
     "@tybys/wasm-util" "^0.10.3"
 
-"@ngx-translate/core@^16.0.4":
-  version "16.0.4"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-16.0.4.tgz#8e17d6ed6b306803ed2eb19ab72a0fdb697f1d76"
-  integrity sha512-s8llTL2SJvROhqttxvEs7Cg+6qSf4kvZPFYO+cTOY1d8DWTjlutRkWAleZcPPoeX927Dm7ALfL07G7oYDJ7z6w==
+"@ngx-translate/core@17":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-17.0.0.tgz#d6c0738c5004b53273bc97e6ca5488f6a6816f25"
+  integrity sha512-Rft2D5ns2pq4orLZjEtx1uhNuEBerUdpFUG1IcqtGuipj6SavgB8SkxtNQALNDA+EVlvsNCCjC2ewZVtUeN6rg==
   dependencies:
     tslib "^2.3.0"
 
-"@ngx-translate/http-loader@^16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-16.0.1.tgz#01219d623ea810fd36ba2911d1452975cd32a041"
-  integrity sha512-xJEOUpvs6Zfc8G4cmQmegFOEpfYSoplTHHoisPNrATXjRBjpaKsBaPOXlZsuFUW2XV00s16gIyI4+9z1XkO5bw==
+"@ngx-translate/http-loader@17":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-17.0.0.tgz#6ab727e780189a9a5e80059c758dc95de93608ea"
+  integrity sha512-hgS8sa0ARjH9ll3PhkLTufeVXNI2DNR2uFKDhBgq13siUXzzVr/a31M6zgecrtwbA34iaBV01hsTMbMS8V7iIw==
   dependencies:
     tslib "^2.3.0"
 
